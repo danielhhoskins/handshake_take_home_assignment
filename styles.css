@@ -3,24 +3,29 @@
   --color_muted: #5b6b7c;
   --color_border: #dfe5ec;
   --color_surface: #ffffff;
-  --color_canvas: #f4f6f9;
   --color_accent: #1f5fd6;
-  --color_persona_upstream: #1f5fd6;
-  --color_persona_downstream: #6b3fd4;
   --color_high: #b32318;
   --color_high_soft: #fdeceb;
   --color_proposed: #8a5a00;
   --color_proposed_soft: #fdf3e2;
+  --color_persona_upstream: #5b9bff;
+  --color_persona_downstream: #b18cff;
+  --color_harness_backdrop: #10131a;
+  --color_harness_chrome: #1b202b;
+  --color_harness_text: #8e9bad;
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background: var(--color_canvas);
+  padding-bottom: 56px;
+  background: var(--color_harness_backdrop);
   color: var(--color_text);
   font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
+
+.hidden { display: none !important; }
 
 code {
   background: #eef1f6;
@@ -29,42 +34,57 @@ code {
   font-size: 13px;
 }
 
-.hidden { display: none !important; }
-
-/* ── top bar ───────────────────────────────────────────── */
-.top_bar {
-  position: sticky;
-  top: 0;
-  z-index: 10;
+/* ══════════════════════════════════════════════════════════════
+   Harness chrome — dark, monospace, and deliberately unlike the
+   product so it never reads as part of the app.
+   ══════════════════════════════════════════════════════════════ */
+.harness_bar {
   display: flex;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
-  padding: 12px 24px;
-  background: var(--color_surface);
-  border-bottom: 1px solid var(--color_border);
+  padding: 12px 26px;
+  background: var(--color_harness_chrome);
+  border-bottom: 1px solid #2a3140;
 }
 
-.step_rail { display: flex; align-items: stretch; gap: 12px; margin-left: auto; }
+.harness_label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color_harness_text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 
-/* Each lane groups the steps owned by one persona, so the label physically
-   spans the steps it owns. The inactive lane is dimmed. */
-.persona_lane {
+.harness_label_dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.16);
+}
+
+.harness_step_rail { display: flex; align-items: stretch; gap: 12px; margin-left: auto; }
+
+/* Each lane groups the steps owned by one persona; the inactive lane dims. */
+.harness_lane {
   --lane_color: var(--color_persona_upstream);
   display: flex;
   flex-direction: column;
   gap: 5px;
   padding: 6px 10px;
-  border: 1px solid var(--color_border);
+  border: 1px solid #2f3747;
   border-radius: 12px;
-  background: #f8fafc;
+  background: #232a37;
 }
 
-.persona_lane[data-persona-lane="downstream_pm_leo"] { --lane_color: var(--color_persona_downstream); }
-.persona_lane:not(.is_active) { opacity: 0.5; }
-.persona_lane.is_active { border-color: color-mix(in srgb, var(--lane_color) 40%, #fff); background: color-mix(in srgb, var(--lane_color) 5%, #fff); }
+.harness_lane[data-persona-lane="downstream_pm_leo"] { --lane_color: var(--color_persona_downstream); }
+.harness_lane:not(.is_active) { opacity: 0.45; }
+.harness_lane.is_active { border-color: color-mix(in srgb, var(--lane_color) 50%, #232a37); }
 
-.persona_lane_label {
+.harness_lane_label {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -72,24 +92,58 @@ code {
   background: none;
   padding: 0;
   font: inherit;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 10px;
-  font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--lane_color);
   cursor: pointer;
 }
 
-.persona_lane_label::before {
+.harness_lane_label::before {
   content: "";
   width: 7px; height: 7px;
   border-radius: 50%;
   background: var(--lane_color);
 }
 
-.persona_lane_steps { display: flex; align-items: center; gap: 6px; }
+.harness_lane_steps { display: flex; align-items: center; gap: 6px; }
 
-.handoff_marker {
+.harness_step_button {
+  border: 1px solid #39414f;
+  background: #1b202b;
+  color: #9aa7b8;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.harness_step_button:hover { color: #e6ebf3; border-color: #4d5768; }
+
+.harness_step_button.is_active {
+  background: color-mix(in srgb, var(--lane_color) 18%, #1b202b);
+  border-color: var(--lane_color);
+  color: #fff;
+  font-weight: 600;
+}
+
+.harness_step_number {
+  display: inline-block;
+  width: 18px; height: 18px;
+  margin-right: 4px;
+  border-radius: 50%;
+  background: #2f3747;
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.harness_step_button.is_active .harness_step_number { background: var(--lane_color); color: #10131a; }
+.harness_step_arrow { color: #4d5768; font-size: 13px; }
+
+.harness_handoff {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,64 +152,82 @@ code {
   padding-top: 14px;
 }
 
-.handoff_marker_label {
+.harness_handoff_label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 9px;
-  font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: #98a6b6;
+  color: #5c6678;
 }
 
-.handoff_marker_line { color: #98a6b6; font-size: 16px; line-height: 1; }
+.harness_handoff_line { color: #5c6678; font-size: 16px; line-height: 1; }
 
-.step_button {
-  border: 1px solid var(--color_border);
-  background: var(--color_surface);
-  color: var(--color_muted);
-  border-radius: 999px;
-  padding: 6px 12px;
-  font: inherit;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.step_button:hover { border-color: #b9c4d2; color: var(--color_text); }
-
-.step_button.is_active {
-  background: color-mix(in srgb, var(--lane_color) 12%, #fff);
-  border-color: var(--lane_color);
-  color: var(--lane_color);
-  font-weight: 600;
-}
-
-.step_number {
-  display: inline-block;
-  width: 18px; height: 18px;
-  margin-right: 4px;
-  border-radius: 50%;
-  background: #eef1f6;
-  font-size: 11px;
-  line-height: 18px;
-  text-align: center;
-}
-
-.step_button.is_active .step_number { background: var(--lane_color); color: #fff; }
-.step_arrow { color: #b9c4d2; font-size: 13px; }
-
-.persona_banner {
-  padding: 8px 24px;
-  background: color-mix(in srgb, var(--color_persona_downstream) 10%, #fff);
-  border-bottom: 1px solid color-mix(in srgb, var(--color_persona_downstream) 30%, #fff);
+/* Narration about the demo stays in the dark chrome, never on the product. */
+.harness_narration {
+  padding: 8px 26px;
+  background: color-mix(in srgb, var(--color_persona_downstream) 18%, var(--color_harness_backdrop));
   color: var(--color_persona_downstream);
   font-size: 13px;
   font-weight: 600;
 }
 
-/* ── screens ───────────────────────────────────────────── */
-.screen_container { max-width: 720px; margin: 0 auto; padding: 28px 24px 64px; }
+.harness_caption {
+  margin: 14px 0 0;
+  color: #5c6678;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
 
-.page_title { margin: 0 0 4px; font-size: 24px; letter-spacing: -0.02em; }
-.page_subtext { margin: 0 0 20px; color: var(--color_muted); }
+/* ══════════════════════════════════════════════════════════════
+   Browser frame — the boundary of the product.
+   ══════════════════════════════════════════════════════════════ */
+.browser_frame {
+  max-width: 780px;
+  margin: 36px auto 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color_surface);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+.browser_title_bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px;
+  background: #e9edf3;
+  border-bottom: 1px solid #d5dce6;
+}
+
+.browser_dot { width: 11px; height: 11px; border-radius: 50%; }
+.browser_dot_red { background: #ff5f57; }
+.browser_dot_yellow { background: #febc2e; }
+.browser_dot_green { background: #28c840; }
+
+.browser_url {
+  flex: 1;
+  margin-left: 10px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--color_muted);
+  font-size: 12px;
+}
+
+.browser_viewport {
+  position: relative;
+  padding: 28px 30px 34px;
+  background: #f4f6f9;
+  min-height: 460px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Product styling — light, inside the frame.
+   ══════════════════════════════════════════════════════════════ */
+.page_title { margin: 0 0 4px; font-size: 22px; letter-spacing: -0.02em; }
+.page_subtext { margin: 0 0 18px; color: var(--color_muted); }
 
 .card {
   background: var(--color_surface);
@@ -179,6 +251,9 @@ code {
   color: var(--color_muted);
 }
 
+.summary_metrics { display: flex; flex-wrap: wrap; gap: 28px; margin-bottom: 12px; }
+.summary_label { display: block; color: var(--color_muted); font-size: 12px; }
+.summary_value { font-weight: 600; }
 .muted { color: var(--color_muted); }
 
 /* ── dependency visual ─────────────────────────────────── */
@@ -308,12 +383,7 @@ code {
   font-size: 13px;
 }
 
-.email_field_label {
-  display: inline-block;
-  width: 64px;
-  color: var(--color_muted);
-}
-
+.email_field_label { display: inline-block; width: 64px; color: var(--color_muted); }
 .email_body { padding: 18px; }
 .email_body p { margin: 0 0 14px; }
 .email_body p:last-child { margin-bottom: 0; }
@@ -333,13 +403,13 @@ code {
   resize: vertical;
 }
 
-/* ── toast ─────────────────────────────────────────────── */
+/* ── toast (product-level, so it sits inside the frame) ── */
 .toast {
-  position: fixed;
+  position: absolute;
   left: 50%;
-  bottom: 28px;
+  bottom: 20px;
   transform: translateX(-50%);
-  max-width: 90vw;
+  max-width: 90%;
   padding: 12px 18px;
   background: #16202c;
   border-radius: 10px;

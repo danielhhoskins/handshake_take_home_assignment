@@ -1,9 +1,9 @@
 /**
  * Dependency Radar prototype.
  *
- * Three linked screens (email alert -> upstream dependency review -> downstream
- * impact brief) in a persistent step rail, grouped into persona lanes so a
- * reviewer can jump anywhere in the flow without getting lost.
+ * Three product screens (email alert -> upstream dependency review ->
+ * downstream impact brief) rendered inside a browser frame. The dark harness
+ * around that frame is demo scaffolding: persona lanes, step rail, narration.
  */
 
 const evidence_sources_supporting_the_inference = [
@@ -27,10 +27,23 @@ const evidence_sources_supporting_the_inference = [
   },
 ];
 
-const step_number_to_persona_identifier = {
-  1: "upstream_pm_maya",
-  2: "upstream_pm_maya",
-  3: "downstream_pm_leo",
+/** Which persona owns each step, plus the harness framing for that step. */
+const presentation_details_by_step_number = {
+  1: {
+    persona_identifier: "upstream_pm_maya",
+    browser_url: "mail.company.com/inbox",
+    caption: "Step 1 of 3 · Maya’s experience",
+  },
+  2: {
+    persona_identifier: "upstream_pm_maya",
+    browser_url: "radar.company.com/dependencies/482",
+    caption: "Step 2 of 3 · Maya’s experience",
+  },
+  3: {
+    persona_identifier: "downstream_pm_leo",
+    browser_url: "radar.company.com/impacts/482",
+    caption: "Step 3 of 3 · Leo’s experience",
+  },
 };
 
 let most_recently_viewed_upstream_step_number = 1;
@@ -73,23 +86,25 @@ function show_status_note(status_note_element, status_note_text) {
  * Moves the prototype to a step. Persona always follows the step, so panelists
  * can click either control and stay in a consistent state.
  */
-function go_to_step(target_step_number, { should_show_persona_banner = false } = {}) {
-  const target_persona_identifier = step_number_to_persona_identifier[target_step_number];
-  if (target_persona_identifier === "upstream_pm_maya") {
+function go_to_step(target_step_number, { should_show_persona_narration = false } = {}) {
+  const presentation_details = presentation_details_by_step_number[target_step_number];
+  if (presentation_details.persona_identifier === "upstream_pm_maya") {
     most_recently_viewed_upstream_step_number = target_step_number;
   }
 
   document.querySelectorAll(".screen").forEach((screen_element) => {
     screen_element.classList.toggle("hidden", screen_element.dataset.step !== String(target_step_number));
   });
-  document.querySelectorAll(".step_button").forEach((step_button_element) => {
-    step_button_element.classList.toggle("is_active", step_button_element.dataset.step === String(target_step_number));
+  document.querySelectorAll(".harness_step_button").forEach((harness_step_button_element) => {
+    harness_step_button_element.classList.toggle("is_active", harness_step_button_element.dataset.step === String(target_step_number));
   });
-  document.querySelectorAll(".persona_lane").forEach((persona_lane_element) => {
-    persona_lane_element.classList.toggle("is_active", persona_lane_element.dataset.personaLane === target_persona_identifier);
+  document.querySelectorAll(".harness_lane").forEach((harness_lane_element) => {
+    harness_lane_element.classList.toggle("is_active", harness_lane_element.dataset.personaLane === presentation_details.persona_identifier);
   });
 
-  document.getElementById("persona_banner").classList.toggle("hidden", !should_show_persona_banner);
+  document.getElementById("browser_url").textContent = presentation_details.browser_url;
+  document.getElementById("harness_caption").textContent = presentation_details.caption;
+  document.getElementById("harness_narration").classList.toggle("hidden", !should_show_persona_narration);
   window.scrollTo({ top: 0 });
 }
 
@@ -98,7 +113,7 @@ const handlers_by_action_name = {
 
   approve_outreach: () => {
     show_toast_message("Revenue Analytics has been invited to review this dependency.");
-    go_to_step(3, { should_show_persona_banner: true });
+    go_to_step(3, { should_show_persona_narration: true });
   },
 
   toggle_edit_impact: () =>
