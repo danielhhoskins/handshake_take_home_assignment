@@ -239,7 +239,7 @@ code {
 .browser_viewport {
   position: relative;
   padding: 28px 30px 34px;
-  background: #f4f6f9;
+  background: #fff;
   min-height: 460px;
 }
 
@@ -265,18 +265,12 @@ code {
   text-transform: uppercase;
 }
 
-.dependency_review_header h1 {
+.impact_screen_header h1 {
   max-width: 640px;
   margin: 0 0 18px;
   font-size: 27px;
   line-height: 1.2;
   letter-spacing: -0.025em;
-}
-
-.dependency_review_header p {
-  max-width: 680px;
-  margin: 0;
-  color: var(--color_muted);
 }
 
 .likely_impact {
@@ -305,8 +299,14 @@ code {
 
 .likely_impact p {
   max-width: 620px;
+  margin: 0;
+  color: var(--color_muted);
   font-size: 14px;
   line-height: 1.65;
+}
+
+.downstream_impact_header {
+  margin-bottom: 54px;
 }
 
 .inline_link { color: var(--color_accent); }
