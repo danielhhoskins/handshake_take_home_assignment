@@ -69,73 +69,99 @@
     </section>
 
     <!-- ─────────────── Step 2: upstream dependency review ─────────────── -->
-    <section class="screen hidden" data-step="2">
-      <h1 class="page_title">Potential downstream dependency</h1>
-      <p class="page_subtext">We found a likely impact from your Checkout Status Redesign on Revenue Analytics.</p>
+    <section class="screen dependency_review_screen hidden" data-step="2">
+      <header class="dependency_review_header">
+        <div class="dependency_review_kicker"><span aria-hidden="true">⚠️</span> Potential downstream impact</div>
+        <h1>Your upcoming launch may break a dashboard owned by a downstream team.</h1>
+        <p>
+          The downstream <span class="inline_link">Revenue Analytics team</span> relies on the database fields
+          <code>payment_pending</code> and <code>payment_failed</code>, which your upcoming launch is planning to replace.
+        </p>
+      </header>
 
-      <div class="dependency_visual">
-        <span class="dependency_node">Checkout Platform</span>
-        <span class="dependency_arrow">
-          <span class="dependency_arrow_label">payment status data</span>
-          <span class="dependency_arrow_line">→</span>
-        </span>
-        <span class="dependency_node">Revenue Analytics</span>
+      <div class="dependency_evidence_grid">
+        <section class="evidence_column">
+          <div class="evidence_column_heading">
+            <h2>Why we think you’re changing this</h2>
+            <p>Evidence from your recent work</p>
+          </div>
+
+          <article class="source_card">
+            <div class="source_card_header">
+              <img class="source_app_logo" src="assets/google-docs-logo.png" alt="Google Docs" />
+              <div>
+                <h3>Checkout Redesign PRD <span class="primary_tag">Primary</span></h3>
+                <p>Updated Aug 28 · Notion</p>
+              </div>
+            </div>
+            <blockquote>
+              “Replace <span class="inline_link">payment_pending</span> and
+              <span class="inline_link">payment_failed</span> with a consolidated payment status.”
+            </blockquote>
+          </article>
+
+          <article class="source_card">
+            <div class="source_card_header">
+              <img class="source_logo" src="assets/otter-ai-logo.svg" alt="Otter.ai" />
+              <div>
+                <h3>Eng sync call</h3>
+                <p>Aug 27 · Otter.ai</p>
+              </div>
+            </div>
+            <blockquote>“We’re leaning toward collapsing the two payment states before the September launch.”</blockquote>
+          </article>
+        </section>
+
+        <section class="evidence_column">
+          <div class="evidence_column_heading">
+            <h2>Why we think the downstream team is affected</h2>
+            <p>Evidence from their assets</p>
+          </div>
+
+          <article class="source_card">
+            <div class="source_card_header">
+              <span class="source_icon source_icon_database" aria-hidden="true">●</span>
+              <div>
+                <h3>checkout_conversion.sql</h3>
+                <p>Revenue Analytics team (data team)</p>
+              </div>
+              <a class="source_external_link" href="#" onclick="return false;">Open in warehouse ↗</a>
+            </div>
+            <pre class="sql_excerpt"><span>23   SELECT</span>
+<span>24       COUNT(*) AS failed_payments</span>
+<span>25   FROM payments</span>
+<span>26   WHERE status IN (</span>
+<span class="sql_field">27       'payment_pending',</span>
+<span class="sql_field">28       'payment_failed'</span>
+<span>29   )</span></pre>
+          </article>
+
+        </section>
       </div>
 
-      <div class="badge_row">
-        <span class="badge badge_high">High impact</span>
-        <span class="badge badge_neutral">87% confidence</span>
-        <span class="feedback_control" data-feedback-group="confidence_accuracy">
-          <button class="feedback_button" data-feedback-value="accurate">Accurate</button>
-          <button class="feedback_button" data-feedback-value="not_accurate">Not accurate</button>
-        </span>
-      </div>
-      <p class="status_note hidden" data-feedback-note="confidence_accuracy"></p>
-
-      <div class="card">
-        <h2 class="card_title">Proposed change</h2>
-        <p>Checkout is replacing <code>payment_pending</code> and <code>payment_failed</code> with a consolidated payment status model.</p>
-        <p class="muted">Target launch: September 21</p>
-      </div>
-
-      <div class="card">
-        <h2 class="card_title">Why Revenue Analytics may be affected</h2>
-        <p>Revenue Analytics currently uses these payment status values to calculate checkout conversion and payment-failure metrics.</p>
-      </div>
-
-      <div class="card">
-        <h2 class="card_title">Likely downstream work</h2>
-        <ul>
-          <li>Update event and status mappings</li>
-          <li>Update dashboard calculation logic</li>
-          <li>Validate historical and new reporting remain comparable</li>
-        </ul>
-        <p class="muted">Estimated effort: 3–5 engineering days</p>
-        <div class="edit_impact_area hidden" data-edit-impact="upstream">
-          <label class="edit_impact_label" for="edit_impact_upstream">Edit impact summary</label>
-          <textarea id="edit_impact_upstream" class="edit_impact_input" rows="3">Update event and status mappings, dashboard calculation logic, and validate historical comparability. Estimated effort: 3–5 engineering days.</textarea>
-          <button class="button button_secondary" data-action="save_impact_edit">Save summary</button>
+      <div class="dependency_conclusion">
+        <span class="conclusion_icon" aria-hidden="true">✓</span>
+        <div>
+          <strong>Therefore</strong>
+          <p>If the database fields <code>payment_pending</code> and <code>payment_failed</code> are removed or renamed, the downstream Revenue Analytics team’s checkout conversion dashboard may break or show incorrect data.</p>
         </div>
       </div>
 
-      <div class="card">
-        <h2 class="card_title">Evidence</h2>
-        <div class="evidence_list" data-evidence-list="upstream"></div>
+      <div class="dependency_review_actions">
+        <span class="next_step_icon" aria-hidden="true">▣</span>
+        <div class="next_step_copy">
+          <strong>What happens next?</strong>
+          <p>You can review the impact and notify the downstream team now, or save and do it later.</p>
+        </div>
+        <button class="button button_primary notify_team_button" data-action="approve_outreach">Notify Revenue Analytics team</button>
+        <button class="button button_secondary not_now_button" data-action="dismiss_dependency">Not now</button>
       </div>
+      <p class="status_note dependency_review_status hidden" id="upstream_status_note"></p>
 
-      <div class="card card_muted">
-        <h2 class="card_title">Outreach preview</h2>
-        <p>Revenue Analytics should be made aware before the payment model is finalized.</p>
-        <p class="muted">They’ll receive a brief explaining the proposed change, likely impact, evidence, and estimated work.</p>
-      </div>
-
-      <div class="button_row">
-        <button class="button button_primary" data-action="approve_outreach">Approve outreach</button>
-        <button class="button button_secondary" data-action="toggle_edit_impact">Edit impact</button>
-        <button class="button button_secondary" data-action="mark_already_coordinated">Already coordinated</button>
-        <button class="button button_tertiary" data-action="dismiss_dependency">Dismiss</button>
-      </div>
-      <p class="status_note hidden" id="upstream_status_note"></p>
+      <footer class="dependency_review_footer">
+        <span>♙ Only you and your team can see these sources.</span>
+        <a href="#" onclick="return false;">Learn more about downstream impact</a>
+      </footer>
     </section>
 
     <!-- ─────────────── Step 3: downstream impact brief ─────────────── -->
