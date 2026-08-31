@@ -383,7 +383,9 @@ code {
   font-size: 13px;
 }
 
-.email_field_label { display: inline-block; width: 64px; color: var(--color_muted); }
+.email_fields > div { display: flex; gap: 8px; margin-bottom: 4px; }
+.email_fields > div:last-child { margin-bottom: 0; }
+.email_field_label { flex: 0 0 56px; color: var(--color_muted); }
 .email_body { padding: 18px; }
 .email_body p { margin: 0 0 14px; }
 .email_body p:last-child { margin-bottom: 0; }
