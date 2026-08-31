@@ -374,6 +374,64 @@ code {
   line-height: 1.7;
 }
 
+.setup_metric_chain {
+  max-width: 820px;
+}
+
+.setup_metric_step {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 20px 22px;
+  border: 1px solid var(--color_border);
+  border-radius: 10px;
+  background: #fbfcfe;
+}
+
+.setup_metric_step > span {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #edf1f6;
+  color: var(--color_muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.setup_metric_step p {
+  margin: 0;
+  color: var(--color_muted);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.setup_metric_step:last-child {
+  border-color: #8acaa5;
+  background: #f2faf4;
+  box-shadow: 0 0 0 3px rgba(41, 149, 90, 0.08);
+}
+
+.setup_metric_step:last-child > span {
+  background: #29955a;
+  color: #fff;
+}
+
+.setup_metric_step:last-child p {
+  color: var(--color_text);
+  font-weight: 700;
+}
+
+.setup_metric_arrow {
+  height: 30px;
+  padding-left: 32px;
+  color: #8c98a8;
+  font-size: 20px;
+  line-height: 30px;
+}
+
 .workflow_failure {
   display: grid;
   grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1.15fr;
