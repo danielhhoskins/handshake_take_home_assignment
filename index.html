@@ -77,6 +77,13 @@
           The downstream <span class="inline_link">Revenue Analytics team</span> relies on the database fields
           <code>payment_pending</code> and <code>payment_failed</code>, which your upcoming launch is planning to replace.
         </p>
+        <div class="likely_impact">
+          <span class="likely_impact_icon" aria-hidden="true">!</span>
+          <div>
+            <h2>Likely impact</h2>
+            <p>If those database fields are removed or renamed, the <span class="inline_link">Revenue Analytics</span> team’s checkout conversion dashboard may break or show incorrect data.</p>
+          </div>
+        </div>
       </header>
 
       <div class="dependency_evidence_grid">
@@ -137,14 +144,6 @@
           </article>
 
         </section>
-      </div>
-
-      <div class="dependency_conclusion">
-        <span class="conclusion_icon" aria-hidden="true">✓</span>
-        <div>
-          <strong>Therefore</strong>
-          <p>If the database fields <code>payment_pending</code> and <code>payment_failed</code> are removed or renamed, the downstream Revenue Analytics team’s checkout conversion dashboard may break or show incorrect data.</p>
-        </div>
       </div>
 
       <div class="dependency_review_actions">

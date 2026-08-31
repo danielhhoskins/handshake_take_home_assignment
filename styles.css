@@ -260,6 +260,36 @@ code {
   color: var(--color_muted);
 }
 
+.likely_impact {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.likely_impact_icon {
+  display: grid;
+  flex: 0 0 34px;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fff0cf;
+  color: #df8a00;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.likely_impact h2 {
+  margin: 1px 0 5px;
+  font-size: 15px;
+}
+
+.likely_impact p {
+  max-width: 620px;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
 .inline_link { color: var(--color_accent); }
 
 .dependency_evidence_grid {
@@ -387,31 +417,6 @@ code {
 }
 
 .sql_field { color: #c73f45; }
-
-.dependency_conclusion {
-  display: flex;
-  gap: 12px;
-  margin: 0 30px 14px;
-  padding: 14px 16px;
-  border: 1px solid #cfe7d7;
-  border-radius: 8px;
-  background: #f2faf4;
-}
-
-.conclusion_icon {
-  display: grid;
-  flex: 0 0 28px;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #20a85a;
-  color: #fff;
-  font-weight: 800;
-}
-
-.dependency_conclusion strong { font-size: 13px; }
-.dependency_conclusion p { margin: 1px 0 0; color: var(--color_muted); font-size: 11px; line-height: 1.55; }
 
 .dependency_review_actions {
   display: flex;
