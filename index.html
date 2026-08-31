@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dependency Radar — prototype</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="top_bar">
+  <nav class="step_rail" id="step_rail">
+    <div class="persona_lane" data-persona-lane="upstream_pm_maya">
+      <button class="persona_lane_label" data-persona="upstream_pm_maya">Maya · Upstream PM</button>
+      <div class="persona_lane_steps">
+        <button class="step_button" data-step="1"><span class="step_number">1</span> Email alert</button>
+        <span class="step_arrow">→</span>
+        <button class="step_button" data-step="2"><span class="step_number">2</span> Dependency review</button>
+      </div>
+    </div>
+
+    <div class="handoff_marker">
+      <span class="handoff_marker_label">handoff</span>
+      <span class="handoff_marker_line">⇢</span>
+    </div>
+
+    <div class="persona_lane" data-persona-lane="downstream_pm_leo">
+      <button class="persona_lane_label" data-persona="downstream_pm_leo">Leo · Downstream PM</button>
+      <div class="persona_lane_steps">
+        <button class="step_button" data-step="3"><span class="step_number">3</span> Downstream impact brief</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="persona_banner hidden" id="persona_banner">Now viewing Leo’s experience</div>
+
+<main class="screen_container">
+
+  <!-- ─────────────── Step 1: email alert to the upstream PM ─────────────── -->
+  <section class="screen hidden" data-step="1">
+    <div class="email_message">
+      <div class="email_fields">
+        <div><span class="email_field_label">From</span>Dependency Radar</div>
+        <div><span class="email_field_label">To</span>Maya Chen</div>
+        <div><span class="email_field_label">Subject</span>Revenue Analytics may be impacted by your checkout change</div>
+      </div>
+      <div class="email_body">
+        <p>We found a likely downstream dependency in the checkout change you're planning.</p>
+        <p>Revenue Analytics appears to rely on the payment status values you're considering changing. If they are brought in late, the launch could create avoidable rework or delays.</p>
+        <p>We've pulled together the likely impact and the evidence behind it so you can review it quickly. Review the dependency <a class="email_link" href="#" data-action="open_dependency_review">here</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── Step 2: upstream dependency review ─────────────── -->
+  <section class="screen hidden" data-step="2">
+    <h1 class="page_title">Potential downstream dependency</h1>
+    <p class="page_subtext">We found a likely impact from your Checkout Status Redesign on Revenue Analytics.</p>
+
+    <div class="dependency_visual">
+      <span class="dependency_node">Checkout Platform</span>
+      <span class="dependency_arrow">
+        <span class="dependency_arrow_label">payment status data</span>
+        <span class="dependency_arrow_line">→</span>
+      </span>
+      <span class="dependency_node">Revenue Analytics</span>
+    </div>
+
+    <div class="badge_row">
+      <span class="badge badge_high">High impact</span>
+      <span class="badge badge_neutral">87% confidence</span>
+      <span class="feedback_control" data-feedback-group="confidence_accuracy">
+        <button class="feedback_button" data-feedback-value="accurate">Accurate</button>
+        <button class="feedback_button" data-feedback-value="not_accurate">Not accurate</button>
+      </span>
+    </div>
+    <p class="status_note hidden" data-feedback-note="confidence_accuracy"></p>
+
+    <div class="card">
+      <h2 class="card_title">Proposed change</h2>
+      <p>Checkout is replacing <code>payment_pending</code> and <code>payment_failed</code> with a consolidated payment status model.</p>
+      <p class="muted">Target launch: September 21</p>
+    </div>
+
+    <div class="card">
+      <h2 class="card_title">Why Revenue Analytics may be affected</h2>
+      <p>Revenue Analytics currently uses these payment status values to calculate checkout conversion and payment-failure metrics.</p>
+    </div>
+
+    <div class="card">
+      <h2 class="card_title">Likely downstream work</h2>
+      <ul>
+        <li>Update event and status mappings</li>
+        <li>Update dashboard calculation logic</li>
+        <li>Validate historical and new reporting remain comparable</li>
+      </ul>
+      <p class="muted">Estimated effort: 3–5 engineering days</p>
+      <div class="edit_impact_area hidden" data-edit-impact="upstream">
+        <label class="edit_impact_label" for="edit_impact_upstream">Edit impact summary</label>
+        <textarea id="edit_impact_upstream" class="edit_impact_input" rows="3">Update event and status mappings, dashboard calculation logic, and validate historical comparability. Estimated effort: 3–5 engineering days.</textarea>
+        <button class="button button_secondary" data-action="save_impact_edit">Save summary</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="card_title">Evidence</h2>
+      <div class="evidence_list" data-evidence-list="upstream"></div>
+    </div>
+
+    <div class="card card_muted">
+      <h2 class="card_title">Outreach preview</h2>
+      <p>Revenue Analytics should be made aware before the payment model is finalized.</p>
+      <p class="muted">They’ll receive a brief explaining the proposed change, likely impact, evidence, and estimated work.</p>
+    </div>
+
+    <div class="button_row">
+      <button class="button button_primary" data-action="approve_outreach">Approve outreach</button>
+      <button class="button button_secondary" data-action="toggle_edit_impact">Edit impact</button>
+      <button class="button button_secondary" data-action="mark_already_coordinated">Already coordinated</button>
+      <button class="button button_tertiary" data-action="dismiss_dependency">Dismiss</button>
+    </div>
+    <p class="status_note hidden" id="upstream_status_note"></p>
+  </section>
+
+  <!-- ─────────────── Step 3: downstream impact brief ─────────────── -->
+  <section class="screen hidden" data-step="3">
+    <h1 class="page_title">Review potential impact</h1>
+    <p class="page_subtext">Checkout Platform is considering a change that may affect Revenue Analytics.</p>
+
+    <div class="dependency_visual">
+      <span class="dependency_node">Checkout Platform</span>
+      <span class="dependency_arrow">
+        <span class="dependency_arrow_label">payment status data</span>
+        <span class="dependency_arrow_line">→</span>
+      </span>
+      <span class="dependency_node">Revenue Analytics</span>
+    </div>
+
+    <div class="badge_row">
+      <span class="badge badge_proposed">Proposed change</span>
+      <span class="badge badge_neutral">Target launch: September 21</span>
+    </div>
+
+    <div class="card">
+      <h2 class="card_title">What’s changing</h2>
+      <p>Checkout plans to replace <code>payment_pending</code> and <code>payment_failed</code> with a consolidated payment status model.</p>
+      <p class="muted">The design is still being finalized.</p>
+    </div>
+
+    <div class="card">
+      <h2 class="card_title">Why this may affect you</h2>
+      <p>Your reporting pipeline currently uses these payment status values to calculate checkout conversion and payment-failure metrics.</p>
+    </div>
+
+    <div class="card">
+      <h2 class="card_title">Potential impact</h2>
+      <p>If the change ships as proposed, Revenue Analytics may need to:</p>
+      <ul>
+        <li>Update event and status mappings</li>
+        <li>Update dashboard calculation logic</li>
+        <li>Validate that historical and new reporting remain comparable</li>
+      </ul>
+    </div>
+
+    <div class="card card_summary">
+      <div class="summary_metrics">
+        <div><span class="summary_label">Estimated effort</span><span class="summary_value">3–5 engineering days</span></div>
+        <div><span class="summary_label">Severity</span><span class="summary_value">High</span></div>
+        <div><span class="summary_label">Confidence</span><span class="summary_value">87%</span></div>
+      </div>
+      <span class="feedback_control" data-feedback-group="estimate_accuracy">
+        <button class="feedback_button" data-feedback-value="estimate_looks_right">Estimate looks right</button>
+        <button class="feedback_button" data-feedback-value="needs_adjustment">Needs adjustment</button>
+      </span>
+      <p class="status_note hidden" data-feedback-note="estimate_accuracy"></p>
+    </div>
+
+    <div class="card">
+      <h2 class="card_title">Evidence</h2>
+      <div class="evidence_list" data-evidence-list="downstream"></div>
+    </div>
+
+    <div class="card card_muted">
+      <h2 class="card_title">What we need from you</h2>
+      <p>Please confirm whether this impact looks accurate and flag anything the Checkout team should account for before the design is finalized.</p>
+    </div>
+
+    <div class="button_row">
+      <button class="button button_primary" data-action="confirm_impact">Confirm impact</button>
+      <button class="button button_secondary" data-action="flag_additional_risk">Flag additional risk</button>
+      <button class="button button_secondary" data-action="request_discussion">Request discussion</button>
+      <button class="button button_tertiary" data-action="mark_not_impacted">Not impacted</button>
+    </div>
+    <p class="status_note hidden" id="downstream_status_note"></p>
+  </section>
+
+</main>
+
+<div class="toast hidden" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

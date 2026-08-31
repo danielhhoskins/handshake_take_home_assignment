@@ -1,0 +1,159 @@
+## 1. Upstream PM alert
+
+Use something like this:
+
+* **Page title:** `Potential downstream dependency`
+
+* **Subtext:** `We found a likely impact from your Checkout Status Redesign on Revenue Analytics.`
+
+* **Dependency visual:**
+  `Checkout Platform  →  Revenue Analytics`
+  Small arrow label: `payment status data`
+
+* **Severity indicator:** `High impact`
+
+* **Confidence indicator:** `87% confidence`
+
+* **Feedback control beside confidence:** `Accurate` / `Not accurate`
+
+* **Proposed change**
+  `Checkout is replacing payment_pending and payment_failed with a consolidated payment status model.`
+  `Target launch: September 21`
+
+* **Why Revenue Analytics may be affected**
+  `Revenue Analytics currently uses these payment status values to calculate checkout conversion and payment-failure metrics.`
+
+* **Likely downstream work**
+  `• Update event and status mappings`
+  `• Update dashboard calculation logic`
+  `• Validate historical and new reporting remain comparable`
+  `Estimated effort: 3–5 engineering days`
+
+* **Evidence**
+  `Checkout Redesign PRD · “Replace legacy payment states…”`
+  `Revenue Metrics Spec · References payment_pending and payment_failed`
+  `Checkout Eng Sync · “Targeting September 21 rollout”`
+  Each is a clickable source chip/link.
+
+* **Outreach preview**
+  `Revenue Analytics should be made aware before the payment model is finalized.`
+  `They’ll receive a brief explaining the proposed change, likely impact, evidence, and estimated work.`
+
+* **Primary button:** `Approve outreach`
+
+* **Secondary actions:** `Edit impact` · `Already coordinated` · `Dismiss`
+
+After **Approve outreach**, show a lightweight confirmation: `Revenue Analytics has been invited to review this dependency.`
+
+## 2. Upstream dependency review
+
+* **Proposed change:** concise summary of what is changing and current target timing.
+* **Detected downstream dependency:** impacted team/product, why it may be affected, and confidence level.
+* **Impact details:** likely downstream changes required, estimated effort, and key risks if coordination happens late.
+* **Supporting evidence:** snippets/links from PRDs, meetings, code, or analytics definitions that support the inference.
+* **Actions:** **Approve outreach** as primary CTA, plus edit impact summary, dismiss dependency, or mark as already coordinated.
+
+Use something like this:
+
+* **Page title:** `Potential downstream dependency`
+
+* **Subtext:** `We found a likely impact from your Checkout Status Redesign on Revenue Analytics.`
+
+* **Dependency visual:**
+  `Checkout Platform  →  Revenue Analytics`
+  Small arrow label: `payment status data`
+
+* **Severity indicator:** `High impact`
+
+* **Confidence indicator:** `87% confidence`
+
+* **Feedback control beside confidence:** `Accurate` / `Not accurate`
+
+* **Proposed change**
+  `Checkout is replacing payment_pending and payment_failed with a consolidated payment status model.`
+  `Target launch: September 21`
+
+* **Why Revenue Analytics may be affected**
+  `Revenue Analytics currently uses these payment status values to calculate checkout conversion and payment-failure metrics.`
+
+* **Likely downstream work**
+  `• Update event and status mappings`
+  `• Update dashboard calculation logic`
+  `• Validate historical and new reporting remain comparable`
+  `Estimated effort: 3–5 engineering days`
+
+* **Evidence**
+  `Checkout Redesign PRD · “Replace legacy payment states…”`
+  `Revenue Metrics Spec · References payment_pending and payment_failed`
+  `Checkout Eng Sync · “Targeting September 21 rollout”`
+  Each is a clickable source chip/link.
+
+* **Outreach preview**
+  `Revenue Analytics should be made aware before the payment model is finalized.`
+  `They’ll receive a brief explaining the proposed change, likely impact, evidence, and estimated work.`
+
+* **Primary button:** `Approve outreach`
+
+* **Secondary actions:** `Edit impact` · `Already coordinated` · `Dismiss`
+
+After **Approve outreach**, show a lightweight confirmation: `Revenue Analytics has been invited to review this dependency.`
+
+## 3. Downstream impact brief
+
+Use this:
+
+* **Page title:** `Review potential impact`
+
+* **Subtext:** `Checkout Platform is considering a change that may affect Revenue Analytics.`
+
+* **Dependency visual:**
+  `Checkout Platform  →  Revenue Analytics`
+  Arrow label: `payment status data`
+
+* **Status badge:** `Proposed change`
+
+* **Target timing:** `Target launch: September 21`
+
+* **What’s changing**
+  `Checkout plans to replace payment_pending and payment_failed with a consolidated payment status model.`
+  `The design is still being finalized.`
+
+* **Why this may affect you**
+  `Your reporting pipeline currently uses these payment status values to calculate checkout conversion and payment-failure metrics.`
+
+* **Potential impact**
+  `If the change ships as proposed, Revenue Analytics may need to:`
+  `• Update event and status mappings`
+  `• Update dashboard calculation logic`
+  `• Validate that historical and new reporting remain comparable`
+
+* **Impact summary card:**
+  `Estimated effort: 3–5 engineering days`
+  `Severity: High`
+  `Confidence: 87%`
+
+* **Feedback control beside estimate:**
+  `Estimate looks right` / `Needs adjustment`
+
+* **Evidence**
+  Clickable source chips:
+
+  * `Checkout Redesign PRD`
+  * `Revenue Metrics Spec`
+  * `Checkout Eng Sync`
+
+  Clicking a source expands the relevant excerpt rather than opening an entirely new workflow.
+
+* **What we need from you**
+  `Please confirm whether this impact looks accurate and flag anything the Checkout team should account for before the design is finalized.`
+
+* **Primary button:** `Confirm impact`
+
+* **Secondary buttons:** `Flag additional risk` · `Request discussion` · `Not impacted`
+
+* **After “Confirm impact”:**
+  `Impact confirmed. Checkout Platform will see your response before finalizing the change.`
+
+## Persistent top bar and navigation
+
+Use a persistent **top bar with a persona/view switcher**: `Upstream PM: Maya` | `Downstream PM: Leo`, plus a simple three-step progress rail: `1. Email alert → 2. Dependency review → 3. Downstream impact brief`. When the user clicks **Review dependency** in the email, automatically move to step 2; when they click **Approve outreach**, automatically switch to the downstream PM view and open step 3, with a small banner saying `Now viewing Leo’s experience`. Also let panelists click any step or persona at any time, so they can freely inspect the whole flow without getting lost.
