@@ -192,6 +192,10 @@ code {
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
 }
 
+.browser_frame:has(.dependency_review_screen:not(.hidden)) {
+  max-width: 1137px;
+}
+
 .browser_title_bar {
   display: flex;
   align-items: center;
@@ -230,15 +234,14 @@ code {
 }
 
 .dependency_review_header {
-  padding: 26px 30px 24px;
-  border-bottom: 1px solid var(--color_border);
+  padding: 120px 126px 54px;
 }
 
 .dependency_review_kicker {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 14px;
   color: var(--color_muted);
   font-size: 11px;
   font-weight: 700;
@@ -248,7 +251,7 @@ code {
 
 .dependency_review_header h1 {
   max-width: 640px;
-  margin: 0 0 10px;
+  margin: 0 0 18px;
   font-size: 27px;
   line-height: 1.2;
   letter-spacing: -0.025em;
@@ -262,8 +265,8 @@ code {
 
 .likely_impact {
   display: flex;
-  gap: 12px;
-  margin-top: 22px;
+  gap: 16px;
+  margin: 34px 0 14px;
 }
 
 .likely_impact_icon {
@@ -280,7 +283,7 @@ code {
 }
 
 .likely_impact h2 {
-  margin: 1px 0 5px;
+  margin: 1px 0 9px;
   font-size: 15px;
 }
 
@@ -295,17 +298,17 @@ code {
 .dependency_evidence_grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  padding: 24px 30px 14px;
+  gap: 88px;
+  padding: 57px 126px 96px;
 }
 
 .evidence_column_heading {
-  min-height: 64px;
-  padding: 0 8px;
+  min-height: 82px;
+  padding: 0 10px;
 }
 
 .evidence_column_heading h2 {
-  margin: 0 0 2px;
+  margin: 0 0 7px;
   font-size: 15px;
   line-height: 1.25;
 }
@@ -317,8 +320,8 @@ code {
 }
 
 .source_card {
-  margin-bottom: 12px;
-  padding: 16px;
+  margin-bottom: 22px;
+  padding: 20px;
   border: 1px solid var(--color_border);
   border-radius: 8px;
   background: #fff;
@@ -328,13 +331,13 @@ code {
 .source_card_header {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 15px;
 }
 
 .source_card_header > div { min-width: 0; }
 
 .source_card_header h3 {
-  margin: 2px 0 3px;
+  margin: 2px 0 6px;
   font-size: 13px;
   line-height: 1.25;
 }
@@ -344,20 +347,6 @@ code {
   color: var(--color_muted);
   font-size: 11px;
 }
-
-.source_icon {
-  display: grid;
-  flex: 0 0 32px;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 7px;
-  color: #fff;
-  font-size: 19px;
-  font-weight: 800;
-}
-
-.source_icon_database { background: #20a85a; border-radius: 50%; }
 
 .source_app_logo {
   flex: 0 0 32px;
@@ -373,21 +362,9 @@ code {
   object-fit: contain;
 }
 
-.primary_tag {
-  display: inline-block;
-  margin-left: 4px;
-  padding: 2px 5px;
-  border-radius: 4px;
-  background: #eef4ff;
-  color: var(--color_accent);
-  font-size: 9px;
-  font-weight: 600;
-  vertical-align: 1px;
-}
-
 .source_card blockquote {
-  margin: 16px 0 0;
-  padding: 14px;
+  margin: 24px 0 0;
+  padding: 18px;
   border: 1px solid #e7e9fa;
   border-radius: 7px;
   background: #f7f7fd;
@@ -406,8 +383,8 @@ code {
 .sql_excerpt {
   display: flex;
   flex-direction: column;
-  margin: 16px 0 0;
-  padding: 12px;
+  margin: 24px 0 0;
+  padding: 16px;
   overflow: hidden;
   border: 1px solid #e2e8e4;
   border-radius: 7px;
@@ -421,8 +398,8 @@ code {
 .dependency_review_actions {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 0 30px 16px;
+  gap: 16px;
+  padding: 36px 126px 90px;
 }
 
 .next_step_icon {
@@ -442,13 +419,13 @@ code {
 .next_step_copy p { margin: 1px 0 0; color: var(--color_muted); font-size: 10px; line-height: 1.4; }
 .notify_team_button { white-space: nowrap; }
 .not_now_button { min-width: 92px; }
-.dependency_review_status { margin: 0 30px 16px; }
+.dependency_review_status { margin: 0 126px 72px; }
 
 .dependency_review_footer {
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  padding: 10px 30px;
+  padding: 48px 126px;
   border-top: 1px solid var(--color_border);
   color: var(--color_muted);
   font-size: 10px;

@@ -73,15 +73,15 @@
       <header class="dependency_review_header">
         <div class="dependency_review_kicker"><span aria-hidden="true">⚠️</span> Potential downstream impact</div>
         <h1>Your upcoming launch may break a dashboard owned by a downstream team.</h1>
-        <p>
-          The downstream <span class="inline_link">Revenue Analytics team</span> relies on the database fields
-          <code>payment_pending</code> and <code>payment_failed</code>, which your upcoming launch is planning to replace.
-        </p>
         <div class="likely_impact">
           <span class="likely_impact_icon" aria-hidden="true">!</span>
           <div>
             <h2>Likely impact</h2>
-            <p>If those database fields are removed or renamed, the <span class="inline_link">Revenue Analytics</span> team’s checkout conversion dashboard may break or show incorrect data.</p>
+            <p>
+              The downstream <span class="inline_link">Revenue Analytics team</span> relies on the database fields
+              <code>payment_pending</code> and <code>payment_failed</code>, which your upcoming launch is planning to replace.
+              If those database fields are removed or renamed, the team’s checkout conversion dashboard may break or show incorrect data.
+            </p>
           </div>
         </div>
       </header>
@@ -97,7 +97,7 @@
             <div class="source_card_header">
               <img class="source_app_logo" src="assets/google-docs-logo.png" alt="Google Docs" />
               <div>
-                <h3>Checkout Redesign PRD <span class="primary_tag">Primary</span></h3>
+                <h3>Checkout Redesign PRD</h3>
                 <p>Updated Aug 28 · Notion</p>
               </div>
             </div>
@@ -127,12 +127,12 @@
 
           <article class="source_card">
             <div class="source_card_header">
-              <span class="source_icon source_icon_database" aria-hidden="true">●</span>
+              <img class="source_app_logo" src="assets/dbt-logo.png" alt="dbt" />
               <div>
                 <h3>checkout_conversion.sql</h3>
-                <p>Revenue Analytics team (data team)</p>
+                <p>Revenue Analytics team (data team) · dbt Cloud</p>
               </div>
-              <a class="source_external_link" href="#" onclick="return false;">Open in warehouse ↗</a>
+              <a class="source_external_link" href="#" onclick="return false;">Open in dbt Cloud ↗</a>
             </div>
             <pre class="sql_excerpt"><span>23   SELECT</span>
 <span>24       COUNT(*) AS failed_payments</span>
