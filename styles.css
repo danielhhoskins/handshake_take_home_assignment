@@ -273,32 +273,8 @@ code {
   letter-spacing: -0.025em;
 }
 
-.likely_impact {
-  display: flex;
-  gap: 16px;
-  margin: 34px 0 14px;
-}
-
-.likely_impact_icon {
-  display: grid;
-  flex: 0 0 34px;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #fff0cf;
-  color: #df8a00;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.likely_impact h2 {
-  margin: 1px 0 9px;
-  font-size: 15px;
-}
-
-.likely_impact p {
-  max-width: 620px;
+.impact_summary {
+  max-width: 680px;
   margin: 0;
   color: var(--color_muted);
   font-size: 14px;

@@ -73,17 +73,11 @@
       <header class="dependency_review_header impact_screen_header">
         <div class="dependency_review_kicker"><span aria-hidden="true">⚠️</span> Potential downstream impact</div>
         <h1>Your upcoming launch may break a dashboard owned by a downstream team.</h1>
-        <div class="likely_impact">
-          <span class="likely_impact_icon" aria-hidden="true">!</span>
-          <div>
-            <h2>Likely impact</h2>
-            <p>
-              The downstream <span class="inline_link">Revenue Analytics team</span> relies on the database fields
-              <code>payment_pending</code> and <code>payment_failed</code>, which your upcoming launch is planning to replace.
-              If those database fields are removed or renamed, the team’s checkout conversion dashboard may break or show incorrect data.
-            </p>
-          </div>
-        </div>
+        <p class="impact_summary">
+          The downstream <span class="inline_link">Revenue Analytics team</span> relies on the database fields
+          <code>payment_pending</code> and <code>payment_failed</code>, which your upcoming launch is planning to replace.
+          If those database fields are removed or renamed, the team’s checkout conversion dashboard may break or show incorrect data.
+        </p>
       </header>
 
       <div class="dependency_evidence_grid">
@@ -122,7 +116,7 @@
         <section class="evidence_column">
           <div class="evidence_column_heading">
             <h2>Why we think the downstream team is affected</h2>
-            <p>Evidence from their assets</p>
+            <p>Evidence from the Revenue Analytics team’s assets</p>
           </div>
 
           <article class="source_card">
@@ -167,17 +161,11 @@
       <header class="impact_screen_header downstream_impact_header">
         <div class="dependency_review_kicker"><span aria-hidden="true">⚠️</span> Potential upstream impact</div>
         <h1>An upstream team may be planning a launch with breaking changes to your dashboard</h1>
-        <div class="likely_impact">
-          <span class="likely_impact_icon" aria-hidden="true">!</span>
-          <div>
-            <h2>Likely impact</h2>
-            <p>
-              The upstream Checkout Platform team plans to replace the <code>payment_pending</code> and
-              <code>payment_failed</code> database fields that your Revenue Analytics team uses to measure
-              checkout conversion and payment failures. If those fields change, your dashboard may break or show incorrect data.
-            </p>
-          </div>
-        </div>
+        <p class="impact_summary">
+          The upstream Checkout Platform team plans to replace the <code>payment_pending</code> and
+          <code>payment_failed</code> database fields that your Revenue Analytics team uses to measure
+          checkout conversion and payment failures. If those fields change, your dashboard may break or show incorrect data.
+        </p>
       </header>
 
       <div class="dependency_visual">
