@@ -244,18 +244,16 @@ code {
   text-transform: uppercase;
 }
 
-.setup_hero h1 {
-  max-width: 900px;
-  margin: 0 0 20px;
-  font-size: 46px;
-  line-height: 1.12;
-  letter-spacing: -0.035em;
-}
-
 .setup_section {
   margin-top: 72px;
   padding-top: 56px;
   border-top: 1px solid var(--color_border);
+}
+
+.setup_content > .setup_section:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
 }
 
 .setup_section > h2 {
@@ -812,7 +810,6 @@ code {
 
 @media (max-width: 720px) {
   .setup_content { padding: 52px 24px 72px; }
-  .setup_hero h1 { font-size: 36px; }
   .setup_user_grid, .setup_quote_grid { grid-template-columns: 1fr; }
   .behavior_change_desired { grid-template-columns: 90px 1fr; }
   .behavior_change_arrow { display: none; }
