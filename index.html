@@ -45,7 +45,90 @@
 <div class="harness_narration" id="harness_narration" data-persona="setup">Prototype setup · context before the flow</div>
 
 <!-- ══════════ Presentation setup: harness content, not a product screen ══════════ -->
-<main class="setup_page" id="setup_page"></main>
+<main class="setup_page" id="setup_page">
+  <div class="setup_content">
+    <header class="setup_hero">
+      <span class="setup_section_label">Prototype setup</span>
+      <h1>Who this product is for</h1>
+    </header>
+
+    <section class="setup_section">
+      <h2>Overview</h2>
+      <ul class="setup_overview_list">
+        <li><strong>Problem:</strong> PMs discover downstream data dependencies too late for affected teams to influence the change cheaply.</li>
+        <li><strong>Prototype:</strong> Detect likely downstream data dependencies early and give the upstream PM enough evidence to involve the right team before the change hardens.</li>
+        <li><strong>Value:</strong> Gives downstream teams time to adapt or push back early, reducing unplanned remediation, launch delays, and product velocity.</li>
+      </ul>
+    </section>
+
+    <section class="setup_section">
+      <span class="setup_section_label">Users</span>
+      <h2>Two PMs connected by a data dependency</h2>
+      <div class="setup_user_grid">
+        <article class="setup_user_card setup_user_card_maya">
+          <div class="setup_user_identity">
+            <span class="setup_user_initial">U</span>
+            <div>
+              <strong>Upstream PM</strong>
+              <span>Produces shared internal data</span>
+            </div>
+          </div>
+          <p>A PM whose team produces data relied on by internal teams, even though those teams are not the product’s primary users.</p>
+        </article>
+
+        <article class="setup_user_card setup_user_card_leo">
+          <div class="setup_user_identity">
+            <span class="setup_user_initial">D</span>
+            <div>
+              <strong>Downstream PM</strong>
+              <span>Depends on another team’s data</span>
+            </div>
+          </div>
+          <p>A PM whose team relies on the data produced by the upstream team.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="setup_section">
+      <span class="setup_section_label">Company type</span>
+      <h2>Where this problem is most acute</h2>
+      <ul class="setup_company_list">
+        <li><strong>1,000–5,000 employees:</strong> large enough that PMs cannot be close with every downstream consumer, but not so large that data dependencies are managed by a dedicated governance team.</li>
+        <li><strong>At least 10 independently owned product or data teams.</strong></li>
+        <li><strong>Product teams ship customer-facing changes at least monthly:</strong> frequent change means upstream PMs are constantly working through evolving plans, making it harder to identify and notify every affected downstream team early.</li>
+      </ul>
+    </section>
+
+    <section class="setup_section">
+      <span class="setup_section_label">Current state</span>
+      <h2>What happens now (status quo)</h2>
+      <div class="setup_current_state">
+        <div class="setup_current_state_step">
+          <span aria-hidden="true">1</span>
+          <p>The upstream PM’s team is planning a launch that changes the data relied on by the downstream PM. The launch is 6 weeks out.</p>
+        </div>
+        <div class="setup_current_state_step">
+          <span aria-hidden="true">2</span>
+          <p>The upstream PM likely knows downstream dependencies may exist, but early in planning they often lack a reliable, low-cost way to know which teams are actually affected. Identifying those teams and validating the impact requires manual investigation while the proposed change is still evolving, so dependencies often remain undiscovered until implementation makes them concrete.</p>
+        </div>
+        <div class="setup_current_state_step">
+          <span aria-hidden="true">3</span>
+          <p>The downstream PM finds out 1 to 2 weeks before launch, when implementation or launch-readiness work exposes the dependency.</p>
+        </div>
+        <div class="setup_current_state_step">
+          <span aria-hidden="true">4</span>
+          <p>By then, the upstream technical approach is much harder to change, so the downstream team has little leverage to influence the design.</p>
+        </div>
+        <div class="setup_current_state_step">
+          <span aria-hidden="true">5</span>
+          <p>They may need to rush fixes, accept broken or inaccurate reporting, or force a late change that delays the launch.</p>
+        </div>
+      </div>
+    </section>
+
+    <button class="setup_start_button" data-step="1">Start prototype →</button>
+  </div>
+</main>
 
 <!-- ══════════ Browser frame: everything inside it is the product ══════════ -->
 <div class="browser_frame hidden" id="prototype_frame">
