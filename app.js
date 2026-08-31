@@ -85,6 +85,25 @@ function show_status_note(status_note_element, status_note_text) {
   status_note_element.classList.remove("hidden");
 }
 
+/** Shows presentation context outside the framed product experience. */
+function show_setup_page() {
+  document.getElementById("setup_page").classList.remove("hidden");
+  document.getElementById("prototype_frame").classList.add("hidden");
+  document.getElementById("harness_caption").classList.add("hidden");
+  document.querySelector(".harness_setup_button").classList.add("is_active");
+  document.querySelectorAll(".harness_step_button").forEach((harness_step_button_element) => {
+    harness_step_button_element.classList.remove("is_active");
+  });
+  document.querySelectorAll(".harness_lane").forEach((harness_lane_element) => {
+    harness_lane_element.classList.remove("is_active");
+  });
+
+  const harness_narration_element = document.getElementById("harness_narration");
+  harness_narration_element.textContent = "Prototype setup · context before the flow";
+  harness_narration_element.dataset.persona = "setup";
+  window.scrollTo({ top: 0 });
+}
+
 /**
  * Moves the prototype to a step. Persona always follows the step, so panelists
  * can click either control and stay in a consistent state.
@@ -95,6 +114,10 @@ function go_to_step(target_step_number) {
     most_recently_viewed_upstream_step_number = target_step_number;
   }
 
+  document.getElementById("setup_page").classList.add("hidden");
+  document.getElementById("prototype_frame").classList.remove("hidden");
+  document.getElementById("harness_caption").classList.remove("hidden");
+  document.querySelector(".harness_setup_button").classList.remove("is_active");
   document.querySelectorAll(".screen").forEach((screen_element) => {
     screen_element.classList.toggle("hidden", screen_element.dataset.step !== String(target_step_number));
   });
@@ -114,6 +137,7 @@ function go_to_step(target_step_number) {
 }
 
 const handlers_by_action_name = {
+  open_setup: () => show_setup_page(),
   open_dependency_review: () => go_to_step(2),
 
   approve_outreach: () => {
@@ -212,4 +236,4 @@ document.addEventListener("click", (click_event) => {
 });
 
 render_evidence_lists_on_every_screen();
-go_to_step(1);
+show_setup_page();

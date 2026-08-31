@@ -68,6 +68,33 @@ code {
 
 .harness_step_rail { display: flex; align-items: stretch; gap: 12px; margin-left: auto; }
 
+.harness_setup_button {
+  align-self: center;
+  border: 1px solid #4d5768;
+  border-radius: 8px;
+  padding: 9px 14px;
+  background: transparent;
+  color: #c3ccd9;
+  font: 600 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.harness_setup_button:hover,
+.harness_setup_button.is_active {
+  border-color: #4ade80;
+  background: rgba(74, 222, 128, 0.1);
+  color: #7aeea5;
+}
+
+.harness_flow_divider {
+  align-self: stretch;
+  width: 1px;
+  margin: 2px 2px;
+  background: #343c4c;
+}
+
 /* Each lane groups the steps owned by one persona; the inactive lane dims. */
 .harness_lane {
   --lane_color: var(--color_persona_upstream);
@@ -179,6 +206,11 @@ code {
   color: var(--color_persona_downstream);
 }
 
+.harness_narration[data-persona="setup"] {
+  background: #202632;
+  color: #aeb8c7;
+}
+
 .harness_caption {
   margin: 14px 0 0;
   color: #5c6678;
@@ -186,6 +218,14 @@ code {
   font-size: 11px;
   letter-spacing: 0.06em;
   text-align: center;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Setup page — presentation context that stays outside the product frame.
+   ══════════════════════════════════════════════════════════════ */
+.setup_page {
+  min-height: calc(100vh - 117px);
+  background: #fff;
 }
 
 /* ══════════════════════════════════════════════════════════════

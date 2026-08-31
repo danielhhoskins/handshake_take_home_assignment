@@ -16,6 +16,9 @@
   </div>
 
   <nav class="harness_step_rail">
+    <button class="harness_setup_button" data-action="open_setup">Setup</button>
+    <span class="harness_flow_divider" aria-hidden="true"></span>
+
     <div class="harness_lane" data-persona-lane="upstream_pm_maya">
       <button class="harness_lane_label" data-persona="upstream_pm_maya">Maya · Upstream PM</button>
       <div class="harness_lane_steps">
@@ -39,10 +42,13 @@
   </nav>
 </header>
 
-<div class="harness_narration" id="harness_narration" data-persona="upstream_pm_maya">Now viewing Maya’s experience</div>
+<div class="harness_narration" id="harness_narration" data-persona="setup">Prototype setup · context before the flow</div>
+
+<!-- ══════════ Presentation setup: harness content, not a product screen ══════════ -->
+<main class="setup_page" id="setup_page"></main>
 
 <!-- ══════════ Browser frame: everything inside it is the product ══════════ -->
-<div class="browser_frame">
+<div class="browser_frame hidden" id="prototype_frame">
   <div class="browser_title_bar">
     <span class="browser_dot browser_dot_red"></span>
     <span class="browser_dot browser_dot_yellow"></span>
@@ -253,7 +259,7 @@
   </main>
 </div>
 
-<p class="harness_caption" id="harness_caption">Step 1 of 3 · Maya’s experience</p>
+<p class="harness_caption hidden" id="harness_caption">Step 1 of 3 · Maya’s experience</p>
 
 <script src="app.js"></script>
 </body>
