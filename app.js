@@ -33,16 +33,19 @@ const presentation_details_by_step_number = {
     persona_identifier: "upstream_pm_maya",
     browser_url: "mail.company.com/inbox",
     caption: "Step 1 of 3 · Maya’s experience",
+    narration: "Now viewing Maya’s experience",
   },
   2: {
     persona_identifier: "upstream_pm_maya",
     browser_url: "radar.company.com/dependencies/482",
     caption: "Step 2 of 3 · Maya’s experience",
+    narration: "Now viewing Maya’s experience",
   },
   3: {
     persona_identifier: "downstream_pm_leo",
     browser_url: "radar.company.com/impacts/482",
     caption: "Step 3 of 3 · Leo’s experience",
+    narration: "Now viewing Leo’s experience",
   },
 };
 
@@ -86,7 +89,7 @@ function show_status_note(status_note_element, status_note_text) {
  * Moves the prototype to a step. Persona always follows the step, so panelists
  * can click either control and stay in a consistent state.
  */
-function go_to_step(target_step_number, { should_show_persona_narration = false } = {}) {
+function go_to_step(target_step_number) {
   const presentation_details = presentation_details_by_step_number[target_step_number];
   if (presentation_details.persona_identifier === "upstream_pm_maya") {
     most_recently_viewed_upstream_step_number = target_step_number;
@@ -104,7 +107,9 @@ function go_to_step(target_step_number, { should_show_persona_narration = false 
 
   document.getElementById("browser_url").textContent = presentation_details.browser_url;
   document.getElementById("harness_caption").textContent = presentation_details.caption;
-  document.getElementById("harness_narration").classList.toggle("hidden", !should_show_persona_narration);
+  const harness_narration_element = document.getElementById("harness_narration");
+  harness_narration_element.textContent = presentation_details.narration;
+  harness_narration_element.dataset.persona = presentation_details.persona_identifier;
   window.scrollTo({ top: 0 });
 }
 
@@ -113,7 +118,7 @@ const handlers_by_action_name = {
 
   approve_outreach: () => {
     show_toast_message("Revenue Analytics has been invited to review this dependency.");
-    go_to_step(3, { should_show_persona_narration: true });
+    go_to_step(3);
   },
 
   toggle_edit_impact: () =>

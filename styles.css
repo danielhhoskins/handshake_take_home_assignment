@@ -165,10 +165,18 @@ code {
 /* Narration about the demo stays in the dark chrome, never on the product. */
 .harness_narration {
   padding: 8px 26px;
-  background: color-mix(in srgb, var(--color_persona_downstream) 18%, var(--color_harness_backdrop));
-  color: var(--color_persona_downstream);
   font-size: 13px;
   font-weight: 600;
+}
+
+.harness_narration[data-persona="upstream_pm_maya"] {
+  background: color-mix(in srgb, var(--color_persona_upstream) 18%, var(--color_harness_backdrop));
+  color: var(--color_persona_upstream);
+}
+
+.harness_narration[data-persona="downstream_pm_leo"] {
+  background: color-mix(in srgb, var(--color_persona_downstream) 18%, var(--color_harness_backdrop));
+  color: var(--color_persona_downstream);
 }
 
 .harness_caption {
@@ -192,8 +200,16 @@ code {
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
 }
 
-.browser_frame:has(.dependency_review_screen:not(.hidden)) {
+.browser_frame:has(.screen[data-step="1"]:not(.hidden)),
+.browser_frame:has(.dependency_review_screen:not(.hidden)),
+.browser_frame:has(.screen[data-step="3"]:not(.hidden)) {
   max-width: 1137px;
+}
+
+.screen[data-step="1"],
+.screen[data-step="3"] {
+  margin: -28px -30px -34px;
+  padding: 90px 126px 54px;
 }
 
 .browser_title_bar {
@@ -370,14 +386,6 @@ code {
   background: #f7f7fd;
   font-size: 13px;
   line-height: 1.75;
-}
-
-.source_external_link {
-  margin-left: auto;
-  color: var(--color_accent);
-  font-size: 10px;
-  white-space: nowrap;
-  text-decoration: none;
 }
 
 .sql_excerpt {
