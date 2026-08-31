@@ -168,71 +168,112 @@
         </p>
       </header>
 
-      <div class="dependency_visual">
-        <span class="dependency_node">Checkout Platform</span>
-        <span class="dependency_arrow">
-          <span class="dependency_arrow_label">payment status data</span>
-          <span class="dependency_arrow_line">→</span>
-        </span>
-        <span class="dependency_node">Revenue Analytics</span>
-      </div>
-
-      <div class="badge_row">
-        <span class="badge badge_proposed">Proposed change</span>
-        <span class="badge badge_neutral">Target launch: September 21</span>
-      </div>
-
-      <div class="card">
-        <h2 class="card_title">What’s changing</h2>
-        <p>Checkout plans to replace <code>payment_pending</code> and <code>payment_failed</code> with a consolidated payment status model.</p>
-        <p class="muted">The design is still being finalized.</p>
-      </div>
-
-      <div class="card">
-        <h2 class="card_title">Why this may affect you</h2>
-        <p>Your reporting pipeline currently uses these payment status values to calculate checkout conversion and payment-failure metrics.</p>
-      </div>
-
-      <div class="card">
-        <h2 class="card_title">Potential impact</h2>
-        <p>If the change ships as proposed, Revenue Analytics may need to:</p>
-        <ul>
-          <li>Update event and status mappings</li>
-          <li>Update dashboard calculation logic</li>
-          <li>Validate that historical and new reporting remain comparable</li>
-        </ul>
-      </div>
-
-      <div class="card card_summary">
-        <div class="summary_metrics">
-          <div><span class="summary_label">Estimated effort</span><span class="summary_value">3–5 engineering days</span></div>
-          <div><span class="summary_label">Severity</span><span class="summary_value">High</span></div>
-          <div><span class="summary_label">Confidence</span><span class="summary_value">87%</span></div>
+      <section class="launch_timing_panel">
+        <div>
+          <span class="launch_timing_label">Expected launch</span>
+          <strong class="launch_timing_date">Around September 21</strong>
+          <span class="launch_timing_hardening">The technical approach is expected to harden in the next 2 weeks</span>
+          <span class="launch_timing_estimate">Rough estimate · timing may move</span>
         </div>
-        <span class="feedback_control" data-feedback-group="estimate_accuracy">
-          <button class="feedback_button" data-feedback-value="estimate_looks_right">Estimate looks right</button>
-          <button class="feedback_button" data-feedback-value="needs_adjustment">Needs adjustment</button>
-        </span>
-        <p class="status_note hidden" data-feedback-note="estimate_accuracy"></p>
+        <div class="launch_timing_guidance">
+          <section>
+            <h2>What should I do?</h2>
+            <p>If this change creates a problem for your team, contact the Checkout Platform team now while the design is still flexible.</p>
+            <p>Once the design is finalized or implementation begins, fixing the issue may require more rework, delay the launch, or leave your dashboard broken.</p>
+          </section>
+        </div>
+      </section>
+
+      <div class="dependency_evidence_grid downstream_evidence_grid">
+        <section class="evidence_column">
+          <div class="evidence_column_heading">
+            <h2>What the upstream team is planning</h2>
+            <p>Evidence from the Checkout Platform team’s recent work</p>
+          </div>
+
+          <article class="source_card">
+            <div class="source_card_header">
+              <img class="source_app_logo" src="assets/google-docs-logo.png" alt="Google Docs" />
+              <div>
+                <h3>Checkout Redesign PRD</h3>
+                <p>Checkout Platform team · Google Docs</p>
+              </div>
+            </div>
+            <blockquote>
+              “Replace <span class="inline_link">payment_pending</span> and
+              <span class="inline_link">payment_failed</span> with a consolidated payment status.”
+            </blockquote>
+          </article>
+
+          <article class="source_card">
+            <div class="source_card_header">
+              <img class="source_logo" src="assets/otter-ai-logo.svg" alt="Otter.ai" />
+              <div>
+                <h3>Eng sync call</h3>
+                <p>Checkout Platform team · Otter.ai</p>
+              </div>
+            </div>
+            <blockquote>“We’re leaning toward collapsing the two payment states before the September launch.”</blockquote>
+          </article>
+        </section>
+
+        <section class="evidence_column">
+          <div class="evidence_column_heading">
+            <h2>How your dashboard depends on those fields</h2>
+            <p>Evidence from your Revenue Analytics team’s assets</p>
+          </div>
+
+          <article class="source_card">
+            <div class="source_card_header">
+              <img class="source_app_logo" src="assets/dbt-logo.png" alt="dbt" />
+              <div>
+                <h3>checkout_conversion.sql</h3>
+                <p>Revenue Analytics team (your team) · dbt Cloud</p>
+              </div>
+            </div>
+            <pre class="sql_excerpt"><span>23   SELECT</span>
+<span>24       COUNT(*) AS failed_payments</span>
+<span>25   FROM payments</span>
+<span>26   WHERE status IN (</span>
+<span class="sql_field">27       'payment_pending',</span>
+<span class="sql_field">28       'payment_failed'</span>
+<span>29   )</span></pre>
+          </article>
+        </section>
       </div>
 
-      <div class="card">
-        <h2 class="card_title">Evidence</h2>
-        <div class="evidence_list" data-evidence-list="downstream"></div>
-      </div>
+      <section class="early_alignment_panel">
+        <h2>Align before the change is finalized</h2>
+        <p class="early_alignment_intro">
+          If this is a problem for Revenue Analytics, ask Checkout Platform to align now on the final field names,
+          transition plan, and launch timing.
+        </p>
 
-      <div class="card card_muted">
-        <h2 class="card_title">What we need from you</h2>
-        <p>Please confirm whether this impact looks accurate and flag anything the Checkout team should account for before the design is finalized.</p>
-      </div>
+        <div class="alignment_outcome_grid">
+          <div class="alignment_outcome alignment_outcome_positive">
+            <h3>Why reach out now</h3>
+            <ul>
+              <li>Influence the data model while the design can still change.</li>
+              <li>Agree on a transition period or temporary dual-write.</li>
+              <li>Leave enough time to update and validate your reporting.</li>
+            </ul>
+          </div>
+          <div class="alignment_outcome alignment_outcome_warning">
+            <h3>If you wait until launch</h3>
+            <ul>
+              <li>Your dbt model may have less time to be updated and tested.</li>
+              <li>Your dashboard may report incorrect conversion and payment-failure data.</li>
+              <li>Either team may face emergency rework or a delayed launch.</li>
+            </ul>
+          </div>
+        </div>
 
-      <div class="button_row">
-        <button class="button button_primary" data-action="confirm_impact">Confirm impact</button>
-        <button class="button button_secondary" data-action="flag_additional_risk">Flag additional risk</button>
-        <button class="button button_secondary" data-action="request_discussion">Request discussion</button>
-        <button class="button button_tertiary" data-action="mark_not_impacted">Not impacted</button>
-      </div>
-      <p class="status_note hidden" id="downstream_status_note"></p>
+        <div class="button_row">
+          <button class="button button_primary" data-action="request_discussion">Request alignment with Checkout Platform</button>
+          <button class="button button_tertiary" data-action="mark_not_impacted">This won’t affect us</button>
+        </div>
+        <p class="status_note hidden" id="downstream_status_note"></p>
+      </section>
     </section>
 
     <div class="toast hidden" id="toast"></div>
