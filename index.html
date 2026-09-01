@@ -209,15 +209,20 @@
 </main>
 
 <!-- ══════════ Browser frame: everything inside it is the product ══════════ -->
-<div class="browser_frame hidden" id="prototype_frame">
-  <div class="browser_title_bar">
-    <span class="browser_dot browser_dot_red"></span>
-    <span class="browser_dot browser_dot_yellow"></span>
-    <span class="browser_dot browser_dot_green"></span>
-    <span class="browser_url" id="browser_url">mail.company.com/inbox</span>
+<div class="browser_frame_shell hidden" id="prototype_frame">
+  <div class="persona_experience_label">
+    <span id="persona_experience_label"></span>
+    <span class="persona_step_counter" id="persona_step_counter"></span>
   </div>
+  <div class="browser_frame">
+    <div class="browser_title_bar">
+      <span class="browser_dot browser_dot_red"></span>
+      <span class="browser_dot browser_dot_yellow"></span>
+      <span class="browser_dot browser_dot_green"></span>
+      <span class="browser_url" id="browser_url">mail.company.com/inbox</span>
+    </div>
 
-  <main class="browser_viewport">
+    <main class="browser_viewport">
 
     <!-- ─────────────── Step 1: email alert to the upstream PM ─────────────── -->
     <section class="screen hidden" data-step="1">
@@ -433,11 +438,10 @@
       </section>
     </section>
 
-    <div class="toast hidden" id="toast"></div>
-  </main>
+      <div class="toast hidden" id="toast"></div>
+    </main>
+  </div>
 </div>
-
-<p class="harness_caption hidden" id="harness_caption">Step 1 of 4 · Maya’s experience</p>
 
 <script src="app.js"></script>
 </body>

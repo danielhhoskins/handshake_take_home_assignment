@@ -189,35 +189,16 @@ code {
 
 .harness_handoff_line { color: #5c6678; font-size: 16px; line-height: 1; }
 
-/* Narration about the demo stays in the dark chrome, never on the product. */
+/* Setup narration stays in the dark chrome, outside the product. */
 .harness_narration {
   padding: 8px 26px;
   font-size: 13px;
   font-weight: 600;
 }
 
-.harness_narration[data-persona="upstream_pm_maya"] {
-  background: color-mix(in srgb, var(--color_persona_upstream) 18%, var(--color_harness_backdrop));
-  color: var(--color_persona_upstream);
-}
-
-.harness_narration[data-persona="downstream_pm_leo"] {
-  background: color-mix(in srgb, var(--color_persona_downstream) 18%, var(--color_harness_backdrop));
-  color: var(--color_persona_downstream);
-}
-
 .harness_narration[data-persona="setup"] {
   background: #202632;
   color: #aeb8c7;
-}
-
-.harness_caption {
-  margin: 14px 0 0;
-  color: #5c6678;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-align: center;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -678,20 +659,35 @@ code {
 /* ══════════════════════════════════════════════════════════════
    Browser frame — the boundary of the product.
    ══════════════════════════════════════════════════════════════ */
-.browser_frame {
-  max-width: 780px;
-  margin: 36px auto 0;
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--color_surface);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+.browser_frame_shell {
+  --active_persona_color: var(--color_persona_upstream);
+  position: relative;
+  max-width: 810px;
+  margin: 76px auto 0;
+  border: 15px solid var(--active_persona_color);
+  border-radius: 30px;
+  background: var(--active_persona_color);
+  box-shadow:
+    0 0 5px 5px color-mix(in srgb, var(--active_persona_color) 65%, transparent),
+    0 24px 60px rgba(0, 0, 0, 0.55);
 }
 
-.browser_frame:has(.screen[data-step="1"]:not(.hidden)),
-.browser_frame:has(.dependency_review_screen:not(.hidden)),
-.browser_frame:has(.screen[data-step="3"]:not(.hidden)),
-.browser_frame:has(.screen[data-step="4"]:not(.hidden)) {
-  max-width: 1137px;
+.browser_frame_shell[data-persona="downstream_pm_leo"] {
+  --active_persona_color: var(--color_persona_downstream);
+}
+
+.browser_frame_shell:has(.screen[data-step="1"]:not(.hidden)),
+.browser_frame_shell:has(.dependency_review_screen:not(.hidden)),
+.browser_frame_shell:has(.screen[data-step="3"]:not(.hidden)),
+.browser_frame_shell:has(.screen[data-step="4"]:not(.hidden)) {
+  max-width: 1167px;
+}
+
+.browser_frame {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--color_surface);
 }
 
 .screen[data-step="1"],
@@ -730,6 +726,35 @@ code {
   padding: 28px 30px 34px;
   background: #fff;
   min-height: 460px;
+}
+
+.persona_experience_label {
+  display: flex;
+  position: absolute;
+  z-index: 5;
+  top: -20px;
+  left: -20px;
+  align-items: center;
+  gap: 14px;
+  transform: translateY(-100%);
+  padding: 11px 17px;
+  border-radius: 8px 8px 0 0;
+  background: var(--active_persona_color);
+  box-shadow: 0 4px 10px rgba(16, 19, 26, 0.22);
+  color: #10131a;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.persona_step_counter {
+  padding-left: 14px;
+  border-left: 1px solid rgba(16, 19, 26, 0.35);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* ── Upstream dependency review ───────────────────────── */

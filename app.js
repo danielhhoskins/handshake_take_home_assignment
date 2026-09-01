@@ -32,26 +32,26 @@ const presentation_details_by_step_number = {
   1: {
     persona_identifier: "upstream_pm_maya",
     browser_url: "mail.company.com/inbox",
-    caption: "Step 1 of 4 · Maya’s experience",
-    narration: "Now viewing Maya’s experience",
+    step_counter: "Step 1 of 4",
+    experience_label: "Now viewing Maya’s Experience (the upstream PM)",
   },
   2: {
     persona_identifier: "upstream_pm_maya",
     browser_url: "radar.company.com/dependencies/482",
-    caption: "Step 2 of 4 · Maya’s experience",
-    narration: "Now viewing Maya’s experience",
+    step_counter: "Step 2 of 4",
+    experience_label: "Now viewing Maya’s Experience (the upstream PM)",
   },
   3: {
     persona_identifier: "downstream_pm_leo",
     browser_url: "mail.company.com/inbox",
-    caption: "Step 3 of 4 · Leo’s experience",
-    narration: "Now viewing Leo’s experience",
+    step_counter: "Step 3 of 4",
+    experience_label: "Now viewing Leo’s Experience (the downstream PM)",
   },
   4: {
     persona_identifier: "downstream_pm_leo",
     browser_url: "radar.company.com/impacts/482",
-    caption: "Step 4 of 4 · Leo’s experience",
-    narration: "Now viewing Leo’s experience",
+    step_counter: "Step 4 of 4",
+    experience_label: "Now viewing Leo’s Experience (the downstream PM)",
   },
 };
 
@@ -96,7 +96,6 @@ function show_status_note(status_note_element, status_note_text) {
 function show_setup_page() {
   document.getElementById("setup_page").classList.remove("hidden");
   document.getElementById("prototype_frame").classList.add("hidden");
-  document.getElementById("harness_caption").classList.add("hidden");
   document.querySelector(".harness_setup_button").classList.add("is_active");
   document.querySelectorAll(".harness_step_button").forEach((harness_step_button_element) => {
     harness_step_button_element.classList.remove("is_active");
@@ -106,6 +105,7 @@ function show_setup_page() {
   });
 
   const harness_narration_element = document.getElementById("harness_narration");
+  harness_narration_element.classList.remove("hidden");
   harness_narration_element.textContent = "Prototype setup · context before the flow";
   harness_narration_element.dataset.persona = "setup";
 }
@@ -124,7 +124,7 @@ function go_to_step(target_step_number) {
 
   document.getElementById("setup_page").classList.add("hidden");
   document.getElementById("prototype_frame").classList.remove("hidden");
-  document.getElementById("harness_caption").classList.remove("hidden");
+  document.getElementById("harness_narration").classList.add("hidden");
   document.querySelector(".harness_setup_button").classList.remove("is_active");
   document.querySelectorAll(".screen").forEach((screen_element) => {
     screen_element.classList.toggle("hidden", screen_element.dataset.step !== String(target_step_number));
@@ -137,10 +137,10 @@ function go_to_step(target_step_number) {
   });
 
   document.getElementById("browser_url").textContent = presentation_details.browser_url;
-  document.getElementById("harness_caption").textContent = presentation_details.caption;
-  const harness_narration_element = document.getElementById("harness_narration");
-  harness_narration_element.textContent = presentation_details.narration;
-  harness_narration_element.dataset.persona = presentation_details.persona_identifier;
+  const prototype_frame_element = document.getElementById("prototype_frame");
+  prototype_frame_element.dataset.persona = presentation_details.persona_identifier;
+  document.getElementById("persona_experience_label").textContent = presentation_details.experience_label;
+  document.getElementById("persona_step_counter").textContent = presentation_details.step_counter;
 }
 
 const handlers_by_action_name = {
