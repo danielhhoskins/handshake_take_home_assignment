@@ -227,7 +227,7 @@ document.addEventListener("click", (click_event) => {
       document.querySelector(
         `[data-feedback-note="${feedback_control_element.dataset.feedbackGroup}"]`
       ),
-      "Thanks — your feedback is recorded and will tune how we score this kind of dependency."
+      "Thanks. Your feedback is recorded and will tune how we score this kind of dependency."
     );
     return;
   }

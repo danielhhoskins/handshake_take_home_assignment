@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Dependency Radar — prototype</title>
+<title>Dependency Radar: prototype</title>
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -58,8 +58,8 @@
         <li><strong>Problem:</strong> downstream PMs discover breaking changes to their data too late to influence the change cheaply.</li>
   
         <li><strong>Solution:</strong> Automatically detect downstream data dependencies from planning artifacts and code, and give the upstream PM a one-click way to notify the downstream PM with an impact brief.</li>
-        <li><strong>Value:</strong> Gives downstream teams time to adapt or push back early, reducing unplanned remediation, launch delays, and product velocity.</li>
-        <li><strong>North Star metric:</strong> Average lead time of actionable downstream PM awareness.</li>
+        <li><strong>Value:</strong> Gives downstream teams time to adapt or push back early, reducing unplanned remediation, launch delays, and increasing product velocity.</li>
+        <li><strong>North Star metric:</strong> Average number of weeks downstream PMs have before launch to act on a dependency alert, counting only alerts where they request alignment or confirm the impact.</li>
       </ul>
     </section>
 
@@ -147,13 +147,15 @@
           <li>Detect a likely downstream dependency.</li>
           <li>Show the upstream PM enough evidence to trust it.</li>
           <li>Help the upstream PM notify the downstream PM early.</li>
+          <li>Help the downstream PM understand the potential change well enough to decide whether to initiate an alignment meeting.</li>
         </ul>
       </div>
       <div class="setup_scope_group">
-        <h3>Deferred / out of scope</h3>
+        <h3>Intentional gaps</h3>
         <ul class="setup_overview_list">
-          <li>Post-notification alignment process</li>
-          <li>Technical feasibility assessment.</li>
+          <li><strong>Post-notification alignment workflow:</strong> Awareness must change behavior before replacing scheduling or resolution tools.</li>
+          <li><strong>Technical feasibility estimates:</strong> These require deeper codebase and capacity integrations than the initial hypothesis needs.</li>
+          <li><strong>Multi-dependency detection:</strong> Validate the two-PM flow before adding many-to-many complexity.</li>
         </ul>
       </div>
     </section>
@@ -184,7 +186,7 @@
         <article class="setup_measurement_row setup_measurement_row_north_star">
           <span class="setup_measurement_row_label">North Star metric</span>
           <div class="setup_measurement_metric_list">
-            <p><strong>Average lead time of actionable downstream PM awareness</strong><span>Time between notification and planned launch, counted only when the downstream PM requests alignment or confirms the impact</span></p>
+            <p><strong>Average time downstream PMs have to act before launch</strong><span>Weeks between the dependency alert and launch, counting only alerts where the downstream PM requests alignment or confirms the impact</span></p>
           </div>
         </article>
 
@@ -218,7 +220,53 @@
     </section>
 
     <section class="setup_section">
+      <h2>What’s next</h2>
+      <div class="setup_next_steps">
+        <h3>What I’d test first, ordered by risk</h3>
+        <ol>
+          <li><strong>Can the system detect real dependencies accurately?</strong> Test 3–5 past launches with known late dependencies. Maximize recall while maintaining precision above 50%.</li>
+          <li><strong>Will upstream PMs trust the evidence enough to notify?</strong> Run 5–10 moderated sessions using evidence from real planning artifacts. If they hesitate, identify whether the evidence is wrong, incomplete, or unconvincing.</li>
+          <li><strong>Will downstream PMs act on the impact brief?</strong> Show real impact briefs in moderated sessions and ask whether they would dismiss the alert or request alignment. If they still need to verify everything themselves, the brief needs richer evidence.</li>
+        </ol>
+
+        <h3>If the core loop validates</h3>
+        <ul>
+          <li>Integrate alerts into Slack, Jira, or document editors once distribution rather than trust becomes the main constraint.</li>
+          <li>Use confirmed and dismissed alerts plus alignment requests as training signals to improve precision and recall over time.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="setup_section">
       <h2>Product decisions</h2>
+      <div class="setup_product_decision">
+        <h3 class="setup_product_decision_prompt">Who should initiate the alignment meeting?</h3>
+        <div class="setup_product_decision_group">
+          <h4>Decision</h4>
+          <p><strong>The downstream PM initiates the alignment meeting, not the upstream PM.</strong></p>
+        </div>
+
+        <div class="setup_product_decision_group">
+          <h4>Alternative considered</h4>
+          <p>The upstream PM schedules the meeting when they click “notify,” bundling notification and meeting creation into one step.</p>
+        </div>
+
+        <div class="setup_product_decision_group">
+          <h4>Rationale</h4>
+          <p>The upstream PM’s job is to confirm the dependency and pass it along; adding scheduling creates friction in the action we need to keep low-cost. The downstream PM knows whether the dependency requires coordination and may be able to handle it alone. Forcing a meeting on every notification wastes time and may make upstream PMs hesitate to notify.</p>
+        </div>
+
+        <div class="setup_product_decision_group">
+          <h4>Tradeoff</h4>
+          <p>This puts coordination work on the person who did not cause the change. We accept that because the downstream PM has the stronger incentive and the context to decide whether a meeting is necessary.</p>
+        </div>
+
+        <div class="setup_product_decision_group">
+          <h4>Revisit signal</h4>
+          <p>If downstream PMs open impact briefs but repeatedly fail to request alignment for real dependencies.</p>
+        </div>
+      </div>
+
       <div class="setup_product_decision">
         <h3 class="setup_product_decision_prompt">Should this be a standalone product or live inside an existing tool?</h3>
         <div class="setup_product_decision_group">
@@ -249,17 +297,17 @@
         <h3 class="setup_product_decision_prompt">How should we define the North Star metric?</h3>
         <div class="setup_product_decision_group">
           <h4>Decision</h4>
-          <p><strong>Average lead time of actionable downstream PM awareness</strong> — weeks between notification and launch, counted only for alerts where the downstream PM requested alignment or confirmed the impact.</p>
+          <p><strong>Average lead time of actionable downstream PM awareness:</strong> weeks between notification and launch, counted only for alerts where the downstream PM requested alignment or confirmed the impact.</p>
         </div>
 
         <div class="setup_product_decision_group">
           <h4>Alternative considered</h4>
-          <p><strong>Average lead time of downstream PM awareness, unfiltered</strong> — the same measurement, but counting all notifications regardless of whether the downstream PM engaged.</p>
+          <p><strong>Average lead time of downstream PM awareness, unfiltered:</strong> the same measurement, but counting all notifications regardless of whether the downstream PM engaged.</p>
         </div>
 
         <div class="setup_product_decision_group">
           <h4>Rationale</h4>
-          <p>The unfiltered version can be inflated by firing earlier on weaker signals. If the system alerts on half-formed plans six weeks out, lead time looks great on paper, but the downstream PM cannot act because nothing is concrete enough yet. The actionable filter measures only notifications that were worth sending—earliness and usefulness in one number.</p>
+          <p>The unfiltered version can be inflated by firing earlier on weaker signals. If the system alerts on half-formed plans six weeks out, lead time looks great on paper, but the downstream PM cannot act because nothing is concrete enough yet. The actionable filter measures only notifications that were worth sending, combining earliness and usefulness in one number.</p>
         </div>
 
         <div class="setup_product_decision_group">
@@ -269,8 +317,30 @@
 
         <div class="setup_product_decision_group">
           <h4>Revisit signal</h4>
-          <p>If downstream PMs engage with alerts but still cannot influence the upstream design in time, evolve the metric from awareness to whether their input changed the outcome.</p>
+          <p>If downstream PMs engage with alerts but still cannot influence the upstream design in time.</p>
         </div>
+      </div>
+
+    </section>
+
+    <section class="setup_section">
+      <h2>AI-assisted prototyping workflow</h2>
+      <div class="setup_ai_workflow">
+        <div class="setup_ai_workflow_group">
+          <h3>Tools I used</h3>
+          <p>Cursor for code implementation; ChatGPT for iterating on screen UI with generated images; vanilla HTML, CSS, and JavaScript for the prototype; and GitHub Pages for deployment.</p>
+        </div>
+
+        <div class="setup_ai_workflow_group">
+          <h3>How I worked and where I steered</h3>
+          <p>I started with the complete four-step journey, then iterated screen by screen. For each screen, I asked: “What is the purpose of this screen? What is the user trying to accomplish? What content will help them achieve it?” Cursor made iteration fast; I steered the scope and product decisions, cutting features that did not test the core hypothesis.</p>
+        </div>
+
+        <div class="setup_ai_workflow_group">
+          <h3>Where the tool went wrong</h3>
+          <p>Sometimes I asked Cursor to generate a significant amount of content, then realized it contained a product decision I should not delegate. That became a forcing function for uncovering implicit product decisions and making them deliberately.</p>
+        </div>
+
       </div>
     </section>
 
@@ -280,13 +350,17 @@
         <li>
           <strong>Why wouldn’t the upstream team just involve them in the first place?</strong>
           <ul>
-            <li>Because the upstream team often doesn’t realize the downstream dependency early enough, and even if they do, they’re human and have other large priorities. Human recognition and memory aren’t a reliable early detection and notification system—an automated system would probably win on detection recall (% of real dependencies caught), which is in the causal chain of our North Star metric.</li>
+            <li>Because the upstream team often doesn’t realize the downstream dependency early enough, and even if they do, they’re human and have other large priorities. Human recognition and memory aren’t a reliable early detection and notification system. An automated system would probably win on detection recall (% of real dependencies caught), which is in the causal chain of our North Star metric.</li>
           </ul>
         </li>
-        <li><strong>Why it should be a team whose product’s main users aren’t the downstream data teams?</strong></li>
+        <li><strong>Why did you restrict the upstream PM to teams whose product’s main users aren’t the downstream data teams?</strong></li>
         <li><strong>Which user (downstream or upstream) should reach out to the other in this workflow?</strong></li>
         <li><strong>Are there boundaries around which detected dependencies should be shared?</strong></li>
         <li><strong>Why hasn’t this been solved yet?</strong></li>
+        <li><strong>What are the data sources?</strong></li>
+        <li><strong>How would you get initial distribution?</strong></li>
+        <li><strong>How did you decide what to include on each screen?</strong></li>
+        <li><strong>Why did you include the last screen?</strong></li>
       </ul>
     </section>
 
@@ -319,7 +393,7 @@
           <div><span class="email_field_label">Subject</span>Your planned launch will change data the Revenue Analytics team relies on</div>
         </div>
         <div class="email_body">
-          <p>Your planned launch will change the data that members of the Revenue Analytics team — the team that owns the company’s revenue reporting — relies on to measure how many shoppers complete checkout.</p>
+          <p>Your planned launch will change the data that members of the Revenue Analytics team, the team that owns the company’s revenue reporting, rely on to measure how many shoppers complete checkout.</p>
           <p>We recommend that you invite them to view the change in Dependency Radar ASAP to keep them in the loop.</p>
           <a class="email_call_to_action" href="#" data-action="open_dependency_review">Review the dependency</a>
         </div>

@@ -354,6 +354,36 @@ code {
   font-size: 16px;
 }
 
+.setup_next_steps {
+  max-width: 920px;
+}
+
+.setup_next_steps h3 {
+  margin: 30px 0 10px;
+  font-size: 18px;
+}
+
+.setup_next_steps h3:first-child {
+  margin-top: 0;
+}
+
+.setup_next_steps ol,
+.setup_next_steps ul {
+  margin: 0;
+  padding-left: 24px;
+  color: var(--color_muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.setup_next_steps li + li {
+  margin-top: 12px;
+}
+
+.setup_next_steps strong {
+  color: var(--color_text);
+}
+
 .setup_product_decision {
   max-width: 920px;
 }
@@ -572,6 +602,26 @@ code {
 
 .setup_measurement_watch_list li + li {
   margin-top: 8px;
+}
+
+.setup_ai_workflow {
+  max-width: 920px;
+}
+
+.setup_ai_workflow_group + .setup_ai_workflow_group {
+  margin-top: 26px;
+}
+
+.setup_ai_workflow_group h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.setup_ai_workflow_group p {
+  margin: 0;
+  color: var(--color_muted);
+  font-size: 15px;
+  line-height: 1.7;
 }
 
 .setup_ataq_list {
