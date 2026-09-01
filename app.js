@@ -1,8 +1,8 @@
 /**
  * Dependency Radar prototype.
  *
- * Three product screens (email alert -> upstream dependency review ->
- * downstream impact brief) rendered inside a browser frame. The dark harness
+ * Four product screens (upstream email -> dependency review -> downstream
+ * email -> impact brief) rendered inside a browser frame. The dark harness
  * around that frame is demo scaffolding: persona lanes, step rail, narration.
  */
 
@@ -32,24 +32,31 @@ const presentation_details_by_step_number = {
   1: {
     persona_identifier: "upstream_pm_maya",
     browser_url: "mail.company.com/inbox",
-    caption: "Step 1 of 3 · Maya’s experience",
+    caption: "Step 1 of 4 · Maya’s experience",
     narration: "Now viewing Maya’s experience",
   },
   2: {
     persona_identifier: "upstream_pm_maya",
     browser_url: "radar.company.com/dependencies/482",
-    caption: "Step 2 of 3 · Maya’s experience",
+    caption: "Step 2 of 4 · Maya’s experience",
     narration: "Now viewing Maya’s experience",
   },
   3: {
     persona_identifier: "downstream_pm_leo",
+    browser_url: "mail.company.com/inbox",
+    caption: "Step 3 of 4 · Leo’s experience",
+    narration: "Now viewing Leo’s experience",
+  },
+  4: {
+    persona_identifier: "downstream_pm_leo",
     browser_url: "radar.company.com/impacts/482",
-    caption: "Step 3 of 3 · Leo’s experience",
+    caption: "Step 4 of 4 · Leo’s experience",
     narration: "Now viewing Leo’s experience",
   },
 };
 
 let most_recently_viewed_upstream_step_number = 1;
+let most_recently_viewed_downstream_step_number = 3;
 
 /** Renders the clickable evidence chips, which expand an excerpt inline. */
 function render_evidence_lists_on_every_screen() {
@@ -101,7 +108,6 @@ function show_setup_page() {
   const harness_narration_element = document.getElementById("harness_narration");
   harness_narration_element.textContent = "Prototype setup · context before the flow";
   harness_narration_element.dataset.persona = "setup";
-  window.scrollTo({ top: 0 });
 }
 
 /**
@@ -112,6 +118,8 @@ function go_to_step(target_step_number) {
   const presentation_details = presentation_details_by_step_number[target_step_number];
   if (presentation_details.persona_identifier === "upstream_pm_maya") {
     most_recently_viewed_upstream_step_number = target_step_number;
+  } else {
+    most_recently_viewed_downstream_step_number = target_step_number;
   }
 
   document.getElementById("setup_page").classList.add("hidden");
@@ -133,12 +141,12 @@ function go_to_step(target_step_number) {
   const harness_narration_element = document.getElementById("harness_narration");
   harness_narration_element.textContent = presentation_details.narration;
   harness_narration_element.dataset.persona = presentation_details.persona_identifier;
-  window.scrollTo({ top: 0 });
 }
 
 const handlers_by_action_name = {
   open_setup: () => show_setup_page(),
   open_dependency_review: () => go_to_step(2),
+  open_downstream_impact_brief: () => go_to_step(4),
 
   approve_outreach: () => {
     show_toast_message("Revenue Analytics has been invited to review this dependency.");
@@ -207,7 +215,9 @@ document.addEventListener("click", (click_event) => {
 
   if (clicked_element.dataset.persona) {
     go_to_step(
-      clicked_element.dataset.persona === "downstream_pm_leo" ? 3 : most_recently_viewed_upstream_step_number
+      clicked_element.dataset.persona === "downstream_pm_leo"
+        ? most_recently_viewed_downstream_step_number
+        : most_recently_viewed_upstream_step_number
     );
     return;
   }

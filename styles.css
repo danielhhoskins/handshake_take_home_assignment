@@ -629,12 +629,14 @@ code {
 
 .browser_frame:has(.screen[data-step="1"]:not(.hidden)),
 .browser_frame:has(.dependency_review_screen:not(.hidden)),
-.browser_frame:has(.screen[data-step="3"]:not(.hidden)) {
+.browser_frame:has(.screen[data-step="3"]:not(.hidden)),
+.browser_frame:has(.screen[data-step="4"]:not(.hidden)) {
   max-width: 1137px;
 }
 
 .screen[data-step="1"],
-.screen[data-step="3"] {
+.screen[data-step="3"],
+.screen[data-step="4"] {
   margin: -28px -30px -34px;
   padding: 90px 126px 54px;
 }

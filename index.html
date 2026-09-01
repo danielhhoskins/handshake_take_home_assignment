@@ -36,7 +36,9 @@
     <div class="harness_lane" data-persona-lane="downstream_pm_leo">
       <button class="harness_lane_label" data-persona="downstream_pm_leo">Leo · Downstream PM</button>
       <div class="harness_lane_steps">
-        <button class="harness_step_button" data-step="3"><span class="harness_step_number">3</span> Impact brief</button>
+        <button class="harness_step_button" data-step="3"><span class="harness_step_number">3</span> Email alert</button>
+        <span class="harness_step_arrow">→</span>
+        <button class="harness_step_button" data-step="4"><span class="harness_step_number">4</span> Impact brief</button>
       </div>
     </div>
   </nav>
@@ -297,8 +299,24 @@
       </footer>
     </section>
 
-    <!-- ─────────────── Step 3: downstream impact brief ─────────────── -->
+    <!-- ─────────────── Step 3: email alert to the downstream PM ─────────────── -->
     <section class="screen hidden" data-step="3">
+      <div class="email_message">
+        <div class="email_fields">
+          <div><span class="email_field_label">From</span>Dependency Radar</div>
+          <div><span class="email_field_label">To</span>Leo, product manager on the Revenue Analytics team, which owns the company’s revenue reporting</div>
+          <div><span class="email_field_label">Subject</span>Checkout Platform is planning a change that may break your dashboard</div>
+        </div>
+        <div class="email_body">
+          <p>The Checkout Platform team, which owns the payment step of the online store, is planning to replace the <code>payment_pending</code> and <code>payment_failed</code> database fields around September 21.</p>
+          <p>Your Revenue Analytics team uses those fields to calculate checkout conversion and payment-failure metrics. If the fields change before your team aligns with Checkout Platform, your dashboard may break or show inaccurate data.</p>
+          <p>The technical approach is expected to harden in the next two weeks. Review the proposed change, supporting evidence, and timing <a class="email_link" href="#" data-action="open_downstream_impact_brief">here</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────── Step 4: downstream impact brief ─────────────── -->
+    <section class="screen hidden" data-step="4">
       <header class="impact_screen_header downstream_impact_header">
         <div class="dependency_review_kicker"><span aria-hidden="true">⚠️</span> Potential upstream impact</div>
         <h1>An upstream team may be planning a launch with breaking changes to your dashboard</h1>
@@ -394,7 +412,7 @@
   </main>
 </div>
 
-<p class="harness_caption hidden" id="harness_caption">Step 1 of 3 · Maya’s experience</p>
+<p class="harness_caption hidden" id="harness_caption">Step 1 of 4 · Maya’s experience</p>
 
 <script src="app.js"></script>
 </body>
