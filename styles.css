@@ -511,7 +511,7 @@ code {
 
 .setup_measurement_metric_list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 320px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   justify-content: start;
 }
@@ -580,6 +580,25 @@ code {
 
 .setup_measurement_row_guardrails {
   margin-top: 24px;
+}
+
+.setup_measurement_diagnostics {
+  max-width: 920px;
+  margin-top: 34px;
+}
+
+.setup_measurement_diagnostics h3 {
+  margin: 0 0 18px;
+  font-size: 17px;
+}
+
+.setup_measurement_diagnostic_group + .setup_measurement_diagnostic_group {
+  margin-top: 20px;
+}
+
+.setup_measurement_diagnostic_group h4 {
+  margin: 0 0 8px;
+  font-size: 14px;
 }
 
 .setup_ai_workflow {

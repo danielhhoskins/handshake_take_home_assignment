@@ -207,18 +207,56 @@
           <span class="setup_measurement_row_label">Drivers</span>
           <div class="setup_measurement_metric_list">
             <p><strong>Detection recall</strong><span>% of real dependencies caught</span></p>
+            <p><strong>Upstream PM notification conversion rate</strong><span>% of reviewed alerts where the upstream PM clicks notify</span></p>
             <p><strong>Early notification rate</strong><span>% of detected dependencies shared before the technical approach hardens</span></p>
           </div>
         </article>
 
         <article class="setup_measurement_row setup_measurement_row_guardrails">
-          <span class="setup_measurement_row_label">Guardrail</span>
+          <span class="setup_measurement_row_label">Guardrails</span>
           <div class="setup_measurement_metric_list">
             <p><strong>Detection precision</strong><span>% of flagged dependencies that are real</span></p>
+            <p><strong>Upstream PM alert fatigue</strong><span>% of upstream PMs whose notification rate declines over time. Captures when the volume of real alerts becomes unsustainable even if precision remains high.</span></p>
+            <p><strong>Previously unknown dependency rate</strong><span>% of notified alerts where the upstream PM reports the dependency was previously unknown. Below 50% means the product is mostly surfacing information they already know.</span></p>
           </div>
         </article>
       </div>
 
+      <div class="setup_measurement_diagnostics">
+        <h3>Others we’d watch</h3>
+        <div class="setup_measurement_diagnostic_group">
+          <h4>Timing</h4>
+          <ul class="setup_overview_list">
+            <li><strong>Average time alerts are surfaced before launch</strong></li>
+          </ul>
+        </div>
+        <div class="setup_measurement_diagnostic_group">
+          <h4>Quality</h4>
+          <ul class="setup_overview_list">
+            <li><strong>Impact brief open-without-action rate</strong> (signals whether the evidence is compelling enough for downstream PMs to act)</li>
+          </ul>
+        </div>
+        <div class="setup_measurement_diagnostic_group">
+          <h4>AI</h4>
+          <ul class="setup_overview_list">
+            <li><strong>Retrieval metrics (e.g. precision/recall stratified by data source)</strong></li>
+            <li><strong>Dependency prediction metrics</strong></li>
+          </ul>
+        </div>
+        <div class="setup_measurement_diagnostic_group">
+          <h4>Adoption</h4>
+          <ul class="setup_overview_list">
+            <li><strong>Upstream PM notification rate:</strong> % of received alerts they notify on; trend indicates trust.</li>
+            <li><strong>Downstream PM action rate:</strong> % of impact briefs that drive alignment or confirmation; trend indicates reliance.</li>
+          </ul>
+        </div>
+        <div class="setup_measurement_diagnostic_group">
+          <h4>Operational health</h4>
+          <ul class="setup_overview_list">
+            <li><strong>Detection pipeline latency</strong> (artifact change to alert surfaced; if this is slow, it eats into the lead time we’re creating)</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <section class="setup_section">
@@ -365,6 +403,11 @@
         <div class="setup_ai_workflow_group">
           <h3>Where the tool went wrong</h3>
           <p>Sometimes I asked Cursor to generate a significant amount of content, then realized it contained a product decision I should not delegate. That became a forcing function for uncovering implicit product decisions and making them deliberately.</p>
+        </div>
+
+        <div class="setup_ai_workflow_group">
+          <h3>What I’d do differently</h3>
+          <p>I’d use image-generation models sooner for UI iteration, then hand the final UI image to the coding agent to implement. Iterating with images is faster than iterating in code and more often produces exactly the visual change I’m asking for.</p>
         </div>
 
       </div>
