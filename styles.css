@@ -1154,7 +1154,24 @@ code {
 .email_body { padding: 18px; }
 .email_body p { margin: 0 0 14px; }
 .email_body p:last-child { margin-bottom: 0; }
-.email_link { color: var(--color_accent); }
+.email_call_to_action {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 6px;
+  background: var(--color_accent);
+  box-shadow: 0 2px 5px rgba(34, 83, 160, 0.2);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.email_call_to_action:hover {
+  background: #285aa7;
+}
 
 /* ── edit impact ───────────────────────────────────────── */
 .edit_impact_area { margin-top: 12px; }
