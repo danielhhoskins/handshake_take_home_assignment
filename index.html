@@ -293,6 +293,27 @@
       </div>
 
       <div class="setup_product_decision">
+        <h3 class="setup_product_decision_prompt">How should we close the awareness gap between upstream and downstream PMs?</h3>
+        <div class="setup_product_decision_group">
+          <h4>Decision</h4>
+          <p><strong>Use event-triggered alerts with upstream PM approval before downstream notification.</strong></p>
+        </div>
+
+        <div class="setup_product_decision_group">
+          <h4>Alternatives considered</h4>
+          <ul>
+            <li><strong>Notify the downstream PM directly:</strong> Removes friction, but also removes the upstream PM’s judgment about whether the dependency is real. False positives could quickly erode trust. Also, an automatic data sharing approach could cause adoption issues for multiple reasons.</li>
+            <li><strong>Always-on dependency dashboard (pull based):</strong> Gives full visibility, but requires PMs to remember to check it. That recreates the adoption problem caused by low perceived urgency.</li>
+          </ul>
+        </div>
+
+        <div class="setup_product_decision_group">
+          <h4>Rationale</h4>
+          <p>The approach is push-based, so nobody has to remember to check. The upstream PM’s one-click approval acts as a human precision filter before the downstream PM is notified, preserving alert quality without requiring manual investigation.</p>
+        </div>
+      </div>
+
+      <div class="setup_product_decision">
         <h3 class="setup_product_decision_prompt">How should we define the North Star metric?</h3>
         <div class="setup_product_decision_group">
           <h4>Decision</h4>
@@ -356,7 +377,6 @@
           </ul>
         </li>
         <li><strong>Why did you restrict the upstream PM to teams whose product’s main users aren’t the downstream data teams?</strong></li>
-        <li><strong>Which user (downstream or upstream) should reach out to the other in this workflow?</strong></li>
         <li><strong>Are there boundaries around which detected dependencies should be shared?</strong></li>
         <li><strong>Why hasn’t this been solved yet?</strong></li>
         <li><strong>What are the data sources?</strong></li>
