@@ -582,28 +582,6 @@ code {
   margin-top: 24px;
 }
 
-.setup_measurement_watch_list {
-  max-width: 920px;
-  margin-top: 34px;
-}
-
-.setup_measurement_watch_list h3 {
-  margin: 0 0 14px;
-  font-size: 17px;
-}
-
-.setup_measurement_watch_list ul {
-  margin: 0;
-  padding-left: 24px;
-  color: var(--color_muted);
-  font-size: 15px;
-  line-height: 1.7;
-}
-
-.setup_measurement_watch_list li + li {
-  margin-top: 8px;
-}
-
 .setup_ai_workflow {
   max-width: 920px;
 }

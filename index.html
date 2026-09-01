@@ -55,9 +55,9 @@
       <h2>Overview</h2>
       <ul class="setup_overview_list">
         <li><strong>One-liner:</strong> a way for PMs to catch downstream dependencies before launch decisions harden.</li>
-        <li><strong>Problem:</strong> downstream PMs discover breaking changes to their data too late to influence the change cheaply.</li>
+        <li><strong>Problem:</strong> downstream PMs discover breaking changes to their data too late to influence the change cheaply. This happens because upstream PMs, early in planning, don't know which downstream teams depend on their data or how severely a change would affect them.</li>
   
-        <li><strong>Solution:</strong> Automatically detect downstream data dependencies from planning artifacts and code, and give the upstream PM a one-click way to notify the downstream PM with an impact brief.</li>
+        <li><strong>Solution:</strong> Scan planning artifacts, meeting transcripts, and code to detect when an upcoming launch will affect a downstream team's data, then surface the evidence to the upstream PM and give them a one-click way to notify the affected team.</li>
         <li><strong>Value:</strong> Gives downstream teams time to adapt or push back early, reducing unplanned remediation and launch delays.</li>
         <li><strong>North Star metric:</strong> Average number of weeks downstream PMs have before launch to act on a dependency alert, counting only alerts where they request alignment or confirm the impact.</li>
       </ul>
@@ -99,6 +99,16 @@
           <p><strong>Leo</strong> is the PM responsible for Revenue Analytics at an e-commerce company.</p>
         </article>
       </div>
+    </section>
+
+    <section class="setup_section">
+      <h2>Problem</h2>
+      <ul class="setup_overview_list">
+        <li>Downstream PMs are notified of breaking changes to their data dependencies too late to influence the upstream design.</li>
+        <li>That happens because the upstream PM, early in planning while they're still defining their approach, doesn't know which downstream teams depend on their data or how severely the change would affect them.</li>
+        <li><strong>That understanding gap is what we're targeting.</strong></li>
+        <li>The hypothesis is that if we close that understanding gap and make notification trivial, upstream PMs will loop in downstream teams with more lead time.</li>
+      </ul>
     </section>
 
     <section class="setup_section">
@@ -151,10 +161,12 @@
         </ul>
       </div>
       <div class="setup_scope_group">
-        <h3>Intentional gaps</h3>
+        <h3>Deferred / out of scope</h3>
         <ul class="setup_overview_list">
-          <li><strong>Post-notification alignment workflow:</strong> Awareness must change behavior before replacing scheduling or resolution tools.</li>
-          <li><strong>Technical feasibility assessments</strong></li>
+          <li><strong>Post-notification alignment workflow:</strong> Awareness must change behavior before replacing scheduling or resolution tools. If earlier awareness alone doesn't reduce launch delays, building alignment tooling is wasted effort.</li>
+          <li><strong>Multi-team notification:</strong> If an upstream PM won't notify one clearly-affected team, the multi-team experience is irrelevant. Validate the one-to-one case first.</li>
+          <li><strong>Lifecycle updates when plans change:</strong> Only matters if the core notification loop is already working. If upstream PMs aren't notifying, there are no alerts to retract.</li>
+          <li><strong>Post-launch safety net for wrong dismissals:</strong> Deferred because downstream PMs must engage with impact briefs first. If they're not opening them, there are no dismissals to catch.</li>
         </ul>
       </div>
     </section>
@@ -207,15 +219,6 @@
         </article>
       </div>
 
-      <div class="setup_measurement_watch_list">
-        <h3>Others we’d watch</h3>
-        <ul>
-          <li>Upstream PM review-to-notification conversion rate.</li>
-          <li>Median time from alert to downstream notification.</li>
-          <li>Downstream impact brief open rate.</li>
-          <li>% of dependencies resolved before implementation begins.</li>
-        </ul>
-      </div>
     </section>
 
     <section class="setup_section">
