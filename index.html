@@ -75,6 +75,7 @@
             </div>
           </div>
           <p>A PM whose team produces data relied on by internal teams, even though those teams are not the product’s primary users.</p>
+          <p class="setup_user_outcome"><strong>Outcome they care about:</strong> Ship on time. A late-discovered dependency is a threat to their launch date, which is what they’re accountable for.</p>
         </article>
 
         <article class="setup_user_card setup_user_card_leo">
@@ -86,6 +87,7 @@
             </div>
           </div>
           <p>A PM whose team relies on the data produced by the upstream team.</p>
+          <p class="setup_user_outcome"><strong>Outcome they care about:</strong> Remediation gets planned instead of becoming an emergency → higher % of delivery on time.</p>
         </article>
       </div>
       <div class="setup_persona_grid">
@@ -156,6 +158,16 @@
     </section>
 
     <section class="setup_section">
+      <h2>Hypotheses/risks that need to be validated</h2>
+      <div class="setup_validation_group">
+        <h3>Technical</h3>
+        <ul class="setup_overview_list">
+          <li>We can build an automated system that gives Leo enough confidence to actually schedule a pushback call.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="setup_section">
       <h2>Measuring success</h2>
       <div class="setup_measurement_chain">
         <article class="setup_measurement_row setup_measurement_row_business_value">
@@ -171,7 +183,7 @@
         <article class="setup_measurement_row setup_measurement_row_north_star">
           <span class="setup_measurement_row_label">North Star metric</span>
           <div class="setup_measurement_metric_list">
-            <p><strong>Average lead time of downstream PM awareness</strong><span>Time between downstream notification and the planned launch</span></p>
+            <p><strong>Average lead time of actionable downstream PM awareness</strong><span>Time between notification and planned launch, counted only when the downstream PM requests alignment or confirms the impact</span></p>
           </div>
         </article>
 
@@ -202,6 +214,79 @@
           <li>% of dependencies resolved before implementation begins.</li>
         </ul>
       </div>
+    </section>
+
+    <section class="setup_section">
+      <h2>Product decisions</h2>
+      <div class="setup_product_decision">
+        <h3 class="setup_product_decision_prompt">Should this be a standalone product or live inside an existing tool?</h3>
+        <div class="setup_product_decision_group">
+          <h4>Decision</h4>
+          <p><strong>Start as a standalone product</strong> to prove the core detection and evidence experience across tools.</p>
+        </div>
+
+        <div class="setup_product_decision_group">
+          <h4>Alternatives considered</h4>
+          <ul>
+            <li><strong>Jira or Linear feature:</strong> Easier distribution, but one platform cannot see all the signals across documents, meetings, tickets, and code.</li>
+            <li><strong>Notion or Google Docs plugin:</strong> Detects risk while a PM writes, but over-optimizes for one source when evidence is spread across several.</li>
+          </ul>
+        </div>
+
+        <div class="setup_product_decision_group">
+          <h4>Rationale</h4>
+          <p>The biggest risk is whether PMs trust the detection and evidence enough to act. Standalone lets us test that core value before optimizing distribution.</p>
+        </div>
+
+        <div class="setup_product_decision_group">
+          <h4>Tradeoff and revisit signal</h4>
+          <p>Standalone adds another destination for PMs. If they act on alerts but want them inside existing tools, integrations become the next distribution channel.</p>
+        </div>
+      </div>
+
+      <div class="setup_product_decision">
+        <h3 class="setup_product_decision_prompt">How should we define the North Star metric?</h3>
+        <div class="setup_product_decision_group">
+          <h4>Decision</h4>
+          <p><strong>Average lead time of actionable downstream PM awareness</strong> — weeks between notification and launch, counted only for alerts where the downstream PM requested alignment or confirmed the impact.</p>
+        </div>
+
+        <div class="setup_product_decision_group">
+          <h4>Alternative considered</h4>
+          <p><strong>Average lead time of downstream PM awareness, unfiltered</strong> — the same measurement, but counting all notifications regardless of whether the downstream PM engaged.</p>
+        </div>
+
+        <div class="setup_product_decision_group">
+          <h4>Rationale</h4>
+          <p>The unfiltered version can be inflated by firing earlier on weaker signals. If the system alerts on half-formed plans six weeks out, lead time looks great on paper, but the downstream PM cannot act because nothing is concrete enough yet. The actionable filter measures only notifications that were worth sending—earliness and usefulness in one number.</p>
+        </div>
+
+        <div class="setup_product_decision_group">
+          <h4>Tradeoff</h4>
+          <p>The filtered version is harder to move because it depends on both system quality and downstream PM engagement, not just detection timing. We accept that because lowering detection thresholds should not be able to inflate the metric at the expense of real user value.</p>
+        </div>
+
+        <div class="setup_product_decision_group">
+          <h4>Revisit signal</h4>
+          <p>If downstream PMs engage with alerts but still cannot influence the upstream design in time, evolve the metric from awareness to whether their input changed the outcome.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="setup_section">
+      <h2>ATAQs</h2>
+      <ul class="setup_ataq_list">
+        <li>
+          <strong>Why wouldn’t the upstream team just involve them in the first place?</strong>
+          <ul>
+            <li>Because the upstream team often doesn’t realize the downstream dependency early enough, and even if they do, they’re human and have other large priorities. Human recognition and memory aren’t a reliable early detection and notification system—an automated system would probably win on detection recall (% of real dependencies caught), which is in the causal chain of our North Star metric.</li>
+          </ul>
+        </li>
+        <li><strong>Why it should be a team whose product’s main users aren’t the downstream data teams?</strong></li>
+        <li><strong>Which user (downstream or upstream) should reach out to the other in this workflow?</strong></li>
+        <li><strong>Are there boundaries around which detected dependencies should be shared?</strong></li>
+        <li><strong>Why hasn’t this been solved yet?</strong></li>
+      </ul>
     </section>
 
     <button class="setup_start_button" data-step="1">Start prototype →</button>

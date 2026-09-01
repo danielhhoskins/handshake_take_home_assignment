@@ -291,6 +291,12 @@ code {
 .setup_user_identity strong { font-size: 17px; }
 .setup_user_identity div > span { color: var(--color_muted); font-size: 12px; }
 .setup_user_card p { margin: 0; color: var(--color_muted); line-height: 1.7; }
+.setup_user_card .setup_user_outcome {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color_border);
+}
+.setup_user_outcome strong { color: var(--color_text); }
 
 .setup_persona_grid {
   display: grid;
@@ -346,6 +352,61 @@ code {
 .setup_scope_group h3 {
   margin: 0 0 10px;
   font-size: 16px;
+}
+
+.setup_product_decision {
+  max-width: 920px;
+}
+
+.setup_product_decision + .setup_product_decision {
+  margin-top: 52px;
+}
+
+.setup_product_decision_prompt {
+  margin: 0 0 26px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.setup_product_decision_group {
+  margin-top: 24px;
+}
+
+.setup_product_decision_group + .setup_product_decision_group {
+  margin-top: 26px;
+}
+
+.setup_product_decision_group h4 {
+  margin: 0 0 10px;
+  color: var(--color_accent);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.setup_product_decision_group p,
+.setup_product_decision_group ul {
+  margin: 0;
+  color: var(--color_muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.setup_product_decision_group ul {
+  padding-left: 22px;
+}
+
+.setup_product_decision_group li + li {
+  margin-top: 14px;
+}
+
+.setup_product_decision_group strong {
+  color: var(--color_text);
+}
+
+.setup_validation_group h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
 }
 
 .setup_current_state {
@@ -511,6 +572,30 @@ code {
 
 .setup_measurement_watch_list li + li {
   margin-top: 8px;
+}
+
+.setup_ataq_list {
+  max-width: 920px;
+  margin: 0;
+  padding-left: 24px;
+  color: var(--color_text);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.setup_ataq_list > li + li {
+  margin-top: 18px;
+}
+
+.setup_ataq_list > li > strong {
+  font-weight: 700;
+}
+
+.setup_ataq_list ul {
+  margin: 8px 0 0;
+  padding-left: 24px;
+  color: var(--color_muted);
+  font-size: 15px;
 }
 
 .workflow_failure {
