@@ -311,6 +311,26 @@ code {
 .setup_user_identity div > span { color: var(--color_muted); font-size: 12px; }
 .setup_user_card p { margin: 0; color: var(--color_muted); line-height: 1.7; }
 
+.setup_persona_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 22px;
+}
+
+.setup_persona_box {
+  padding: 18px 22px;
+  border: 1px solid var(--color_border);
+  border-left-width: 4px;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.setup_persona_box_maya { border-left-color: var(--color_persona_upstream); }
+.setup_persona_box_leo { border-left-color: var(--color_persona_downstream); }
+.setup_persona_box p { margin: 0; color: var(--color_muted); line-height: 1.6; }
+.setup_persona_box strong { color: var(--color_text); }
+
 .setup_overview_list,
 .setup_company_list {
   max-width: 900px;
@@ -326,6 +346,26 @@ code {
 
 .setup_overview_list strong,
 .setup_company_list strong { color: var(--color_text); }
+
+.setup_hypothesis_statement {
+  max-width: 900px;
+  margin: 0;
+  color: var(--color_muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.setup_hypothesis_statement strong { color: var(--color_text); }
+
+.setup_scope_group {
+  max-width: 900px;
+  margin-top: 28px;
+}
+
+.setup_scope_group h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
 
 .setup_current_state {
   max-width: 920px;
@@ -569,6 +609,10 @@ code {
   font: inherit;
   font-weight: 700;
   cursor: pointer;
+}
+
+.setup_start_button_top {
+  margin: 0 0 36px;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -868,7 +912,7 @@ code {
 
 @media (max-width: 720px) {
   .setup_content { padding: 52px 24px 72px; }
-  .setup_user_grid, .setup_quote_grid { grid-template-columns: 1fr; }
+  .setup_user_grid, .setup_persona_grid, .setup_quote_grid { grid-template-columns: 1fr; }
   .behavior_change_desired { grid-template-columns: 90px 1fr; }
   .behavior_change_arrow { display: none; }
   .setup_hypothesis { grid-template-columns: 1fr; }
@@ -1064,14 +1108,19 @@ code {
 /* ── toast (product-level, so it sits inside the frame) ── */
 .toast {
   position: absolute;
+  top: 20px;
   left: 50%;
-  bottom: 20px;
+  z-index: 5;
   transform: translateX(-50%);
+  min-width: 440px;
   max-width: 90%;
-  padding: 12px 18px;
-  background: #16202c;
-  border-radius: 10px;
+  padding: 18px 24px;
+  background: #087a3e;
+  border: 2px solid #56c889;
+  border-radius: 12px;
   color: #fff;
-  font-size: 14px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(8, 122, 62, 0.3);
 }

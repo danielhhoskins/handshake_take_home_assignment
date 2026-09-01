@@ -47,6 +47,8 @@
 <!-- ══════════ Presentation setup: harness content, not a product screen ══════════ -->
 <main class="setup_page" id="setup_page">
   <div class="setup_content">
+    <button class="setup_start_button setup_start_button_top" data-step="1">Start prototype →</button>
+
     <section class="setup_section">
       <h2>Overview</h2>
       <ul class="setup_overview_list">
@@ -82,6 +84,14 @@
             </div>
           </div>
           <p>A PM whose team relies on the data produced by the upstream team.</p>
+        </article>
+      </div>
+      <div class="setup_persona_grid">
+        <article class="setup_persona_box setup_persona_box_maya">
+          <p><strong>Maya</strong> is the PM responsible for Checkout Platform at an e-commerce company.</p>
+        </article>
+        <article class="setup_persona_box setup_persona_box_leo">
+          <p><strong>Leo</strong> is the PM responsible for Revenue Analytics at an e-commerce company.</p>
         </article>
       </div>
     </section>
@@ -120,6 +130,26 @@
           <span aria-hidden="true">5</span>
           <p>The downstream team may need to rush fixes, accept broken or inaccurate reporting, or force a late change that delays the launch.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="setup_section">
+      <h2>Prototype scoping</h2>
+      <p class="setup_hypothesis_statement"><strong>Hypothesis:</strong> If we reduce the effort required for an upstream PM to identify a downstream data dependency and notify the downstream team about it, they will loop in downstream PMs with more lead-time to launch.</p>
+      <div class="setup_scope_group">
+        <h3>In scope</h3>
+        <ul class="setup_overview_list">
+          <li>Detect a likely downstream dependency.</li>
+          <li>Show the upstream PM enough evidence to trust it.</li>
+          <li>Help the upstream PM notify the downstream PM early.</li>
+        </ul>
+      </div>
+      <div class="setup_scope_group">
+        <h3>Deferred / out of scope</h3>
+        <ul class="setup_overview_list">
+          <li>Post-notification alignment process</li>
+          <li>Technical feasibility assessment.</li>
+        </ul>
       </div>
     </section>
 
