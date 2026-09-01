@@ -419,24 +419,29 @@ code {
 }
 
 .setup_measurement_row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 24px;
+  align-items: center;
   padding: 0;
 }
 
 .setup_measurement_row_label {
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 0;
   color: var(--color_muted);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.08em;
-  text-align: center;
+  text-align: left;
   text-transform: uppercase;
 }
 
 .setup_measurement_metric_list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, 320px);
   gap: 16px;
+  justify-content: start;
 }
 
 .setup_measurement_metric_list p {
@@ -446,7 +451,7 @@ code {
   border-radius: 10px;
   background: #fbfcfe;
   line-height: 1.55;
-  text-align: center;
+  text-align: left;
 }
 
 .setup_measurement_metric_list p + p {
@@ -469,22 +474,8 @@ code {
   font-size: 14px;
 }
 
-.setup_measurement_row_business_value {
-  color: #247d4d;
-}
-
-.setup_measurement_row_business_value .setup_measurement_row_label {
-  color: #247d4d;
-}
-
-.setup_measurement_row_business_value .setup_measurement_metric_list p {
-  border-color: #8acaa5;
-  background: #f2faf4;
-}
-
 .setup_measurement_row_north_star {
-  max-width: 620px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .setup_measurement_row_north_star .setup_measurement_row_label {
@@ -498,7 +489,9 @@ code {
 }
 
 .setup_measurement_upward_arrow {
+  width: 150px;
   height: 58px;
+  margin-left: 0;
   color: #7a8799;
   font-size: 11px;
   font-weight: 700;
@@ -514,19 +507,7 @@ code {
 }
 
 .setup_measurement_row_guardrails {
-  max-width: 620px;
   margin-top: 24px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.setup_measurement_row_guardrails .setup_measurement_row_label {
-  color: #9a6812;
-}
-
-.setup_measurement_row_guardrails .setup_measurement_metric_list p {
-  border-color: #e3bd72;
-  background: #fffaf0;
 }
 
 .setup_measurement_watch_list {
@@ -994,6 +975,9 @@ code {
 @media (max-width: 720px) {
   .setup_content { padding: 52px 24px 72px; }
   .setup_user_grid, .setup_persona_grid, .setup_quote_grid { grid-template-columns: 1fr; }
+  .setup_measurement_row { grid-template-columns: 100px minmax(0, 1fr); gap: 14px; }
+  .setup_measurement_metric_list { grid-template-columns: 1fr; }
+  .setup_measurement_upward_arrow { width: 100px; margin-left: 0; }
   .behavior_change_desired { grid-template-columns: 90px 1fr; }
   .behavior_change_arrow { display: none; }
   .setup_hypothesis { grid-template-columns: 1fr; }
