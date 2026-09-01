@@ -662,14 +662,12 @@ code {
 .browser_frame_shell {
   --active_persona_color: var(--color_persona_upstream);
   position: relative;
-  max-width: 810px;
+  max-width: 800px;
   margin: 76px auto 0;
-  border: 15px solid var(--active_persona_color);
-  border-radius: 30px;
+  border: 10px solid var(--active_persona_color);
+  border-radius: 25px;
   background: var(--active_persona_color);
-  box-shadow:
-    0 0 5px 5px color-mix(in srgb, var(--active_persona_color) 65%, transparent),
-    0 24px 60px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 0 5px 5px color-mix(in srgb, var(--active_persona_color) 65%, transparent);
 }
 
 .browser_frame_shell[data-persona="downstream_pm_leo"] {
@@ -680,14 +678,15 @@ code {
 .browser_frame_shell:has(.dependency_review_screen:not(.hidden)),
 .browser_frame_shell:has(.screen[data-step="3"]:not(.hidden)),
 .browser_frame_shell:has(.screen[data-step="4"]:not(.hidden)) {
-  max-width: 1167px;
+  max-width: 1157px;
 }
 
 .browser_frame {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   background: var(--color_surface);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
 }
 
 .screen[data-step="1"],
@@ -732,8 +731,8 @@ code {
   display: flex;
   position: absolute;
   z-index: 5;
-  top: -20px;
-  left: -20px;
+  top: -15px;
+  left: -15px;
   align-items: center;
   gap: 14px;
   transform: translateY(-100%);

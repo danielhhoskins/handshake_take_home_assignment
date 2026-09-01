@@ -106,7 +106,7 @@ function show_setup_page() {
 
   const harness_narration_element = document.getElementById("harness_narration");
   harness_narration_element.classList.remove("hidden");
-  harness_narration_element.textContent = "Prototype setup · context before the flow";
+  harness_narration_element.textContent = "Product Decisions · context before the flow";
   harness_narration_element.dataset.persona = "setup";
 }
 
