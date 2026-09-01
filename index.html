@@ -58,7 +58,7 @@
         <li><strong>Problem:</strong> downstream PMs discover breaking changes to their data too late to influence the change cheaply.</li>
   
         <li><strong>Solution:</strong> Automatically detect downstream data dependencies from planning artifacts and code, and give the upstream PM a one-click way to notify the downstream PM with an impact brief.</li>
-        <li><strong>Value:</strong> Gives downstream teams time to adapt or push back early, reducing unplanned remediation, launch delays, and increasing product velocity.</li>
+        <li><strong>Value:</strong> Gives downstream teams time to adapt or push back early, reducing unplanned remediation and launch delays.</li>
         <li><strong>North Star metric:</strong> Average number of weeks downstream PMs have before launch to act on a dependency alert, counting only alerts where they request alignment or confirm the impact.</li>
       </ul>
     </section>
@@ -140,7 +140,7 @@
 
     <section class="setup_section">
       <h2>Prototype scoping</h2>
-      <p class="setup_hypothesis_statement"><strong>Hypothesis:</strong> If we reduce the effort required for an upstream PM to identify a downstream data dependency and notify the downstream team about it, they will loop in downstream PMs with more lead-time to launch.</p>
+      <p class="setup_hypothesis_statement"><strong>Hypothesis:</strong> If we surface downstream data dependencies that the upstream PM doesn’t currently know about and make notification trivial, they will loop in downstream PMs with more lead time to launch.</p>
       <div class="setup_scope_group">
         <h3>In scope</h3>
         <ul class="setup_overview_list">
