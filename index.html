@@ -112,16 +112,6 @@
     </section>
 
     <section class="setup_section">
-      <span class="setup_section_label">Company type</span>
-      <h2>Where this problem is most acute</h2>
-      <ul class="setup_company_list">
-        <li><strong>1,000 to 5,000 employees:</strong> large enough that PMs cannot be close with every downstream consumer, but not so large that data dependencies are managed by a dedicated governance team.</li>
-        <li><strong>At least 10 independently owned product or data teams.</strong></li>
-        <li><strong>Product teams ship customer-facing changes at least monthly:</strong> frequent change means upstream PMs are constantly working through evolving plans, making it harder to identify and notify every affected downstream team early.</li>
-      </ul>
-    </section>
-
-    <section class="setup_section">
       <span class="setup_section_label">Current state</span>
       <h2>What happens now (status quo)</h2>
       <div class="setup_current_state">
@@ -131,7 +121,7 @@
         </div>
         <div class="setup_current_state_step">
           <span aria-hidden="true">2</span>
-          <p>The upstream PM likely knows downstream dependencies may exist, but early in planning they often lack a reliable, low-cost way to know which teams are actually affected. Identifying those teams and validating the impact requires manual investigation while the proposed change is still evolving, so dependencies often remain undiscovered until implementation makes them concrete.</p>
+          <p>The upstream PM doesn't know which downstream teams depend on their data or how severely the change would affect them, so dependencies remain undiscovered until implementation makes them concrete.</p>
         </div>
         <div class="setup_current_state_step">
           <span aria-hidden="true">3</span>
@@ -146,6 +136,16 @@
           <p>The downstream team may need to rush fixes, accept broken or inaccurate reporting, or force a late change that delays the launch.</p>
         </div>
       </div>
+    </section>
+
+    <section class="setup_section">
+      <span class="setup_section_label">Company type</span>
+      <h2>Where this problem is most acute</h2>
+      <ul class="setup_company_list">
+        <li><strong>1,000 to 5,000 employees:</strong> large enough that PMs cannot be close with every downstream consumer, but not so large that data dependencies are managed by a dedicated governance team.</li>
+        <li><strong>At least 10 independently owned product or data teams.</strong></li>
+        <li><strong>Product teams ship customer-facing changes at least monthly:</strong> frequent change means upstream PMs are constantly working through evolving plans, making it harder to identify and notify every affected downstream team early.</li>
+      </ul>
     </section>
 
     <section class="setup_section">
@@ -264,6 +264,8 @@
       <div class="setup_next_steps">
         <h3>What I’d test first</h3>
         <ol>
+          <li><strong>Get data on the average lead time of these types of changes.</strong></li>
+          <li><strong>Test whether I chose the right company segment.</strong> Conduct generative discovery interviews within the hypothesized segment and with companies one condition removed from it.</li>
           <li><strong>Is the problem real and frequent enough?</strong> Interview 15 to 20 engineering leaders at target companies, asking for a specific recent story of a launch disrupted by a late-discovered dependency. If fewer than a quarter have one, nothing else matters.</li>
           <li><strong>Will upstream PMs notify when shown evidence of a dependency they didn’t know about?</strong> Run 5 to 10 moderated sessions with the prototype using real planning artifacts. If they hesitate, determine whether the barrier is understanding (fixable) or motivation (not fixable by this product).</li>
           <li><strong>Can the system detect real dependencies accurately?</strong> Test 3 to 5 past launches with known late dependencies. Maximize recall while maintaining precision above 50%.</li>
