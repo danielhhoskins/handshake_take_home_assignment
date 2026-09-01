@@ -414,62 +414,141 @@ code {
   line-height: 1.7;
 }
 
-.setup_metric_chain {
-  max-width: 820px;
+.setup_measurement_chain {
+  max-width: 920px;
 }
 
-.setup_metric_step {
+.setup_measurement_row {
+  padding: 0;
+}
+
+.setup_measurement_row_label {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--color_muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.setup_measurement_metric_list {
   display: grid;
-  grid-template-columns: 36px 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 16px;
-  align-items: center;
-  padding: 20px 22px;
+}
+
+.setup_measurement_metric_list p {
+  margin: 0;
+  padding: 22px 24px;
   border: 1px solid var(--color_border);
   border-radius: 10px;
   background: #fbfcfe;
+  line-height: 1.55;
+  text-align: center;
 }
 
-.setup_metric_step > span {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: #edf1f6;
+.setup_measurement_metric_list p + p {
+  margin-top: 0;
+}
+
+.setup_measurement_metric_list strong,
+.setup_measurement_metric_list span {
+  display: block;
+}
+
+.setup_measurement_metric_list strong {
+  color: var(--color_text);
+  font-size: 16px;
+}
+
+.setup_measurement_metric_list span {
+  margin-top: 3px;
   color: var(--color_muted);
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 14px;
 }
 
-.setup_metric_step p {
-  margin: 0;
-  color: var(--color_muted);
-  font-size: 15px;
-  line-height: 1.65;
+.setup_measurement_row_business_value {
+  color: #247d4d;
 }
 
-.setup_metric_step:last-child {
+.setup_measurement_row_business_value .setup_measurement_row_label {
+  color: #247d4d;
+}
+
+.setup_measurement_row_business_value .setup_measurement_metric_list p {
   border-color: #8acaa5;
   background: #f2faf4;
-  box-shadow: 0 0 0 3px rgba(41, 149, 90, 0.08);
 }
 
-.setup_metric_step:last-child > span {
-  background: #29955a;
-  color: #fff;
+.setup_measurement_row_north_star {
+  max-width: 620px;
+  margin: 0 auto;
 }
 
-.setup_metric_step:last-child p {
-  color: var(--color_text);
+.setup_measurement_row_north_star .setup_measurement_row_label {
+  color: var(--color_accent);
+}
+
+.setup_measurement_row_north_star .setup_measurement_metric_list p {
+  border-color: #8daee6;
+  background: #f3f7ff;
+  box-shadow: 0 0 0 3px rgba(54, 106, 196, 0.08);
+}
+
+.setup_measurement_upward_arrow {
+  height: 58px;
+  color: #7a8799;
+  font-size: 11px;
   font-weight: 700;
+  line-height: 58px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
-.setup_metric_arrow {
-  height: 30px;
-  padding-left: 32px;
-  color: #8c98a8;
-  font-size: 20px;
-  line-height: 30px;
+.setup_measurement_upward_arrow span {
+  margin-right: 5px;
+  font-size: 22px;
+  vertical-align: -2px;
+}
+
+.setup_measurement_row_guardrails {
+  max-width: 620px;
+  margin-top: 24px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.setup_measurement_row_guardrails .setup_measurement_row_label {
+  color: #9a6812;
+}
+
+.setup_measurement_row_guardrails .setup_measurement_metric_list p {
+  border-color: #e3bd72;
+  background: #fffaf0;
+}
+
+.setup_measurement_watch_list {
+  max-width: 920px;
+  margin-top: 34px;
+}
+
+.setup_measurement_watch_list h3 {
+  margin: 0 0 14px;
+  font-size: 17px;
+}
+
+.setup_measurement_watch_list ul {
+  margin: 0;
+  padding-left: 24px;
+  color: var(--color_muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.setup_measurement_watch_list li + li {
+  margin-top: 8px;
 }
 
 .workflow_failure {

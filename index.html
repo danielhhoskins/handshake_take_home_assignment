@@ -156,27 +156,51 @@
     </section>
 
     <section class="setup_section">
-      <h2>Metric chain (customer side)</h2>
-      <div class="setup_metric_chain">
-        <div class="setup_metric_step">
-          <span>1</span>
-          <p>Reduce the time-cost to the upstream PM of looping in the downstream PM early</p>
-        </div>
-        <div class="setup_metric_arrow" aria-hidden="true">↓</div>
-        <div class="setup_metric_step">
-          <span>2</span>
-          <p>Increased average lead-time of downstream PM awareness</p>
-        </div>
-        <div class="setup_metric_arrow" aria-hidden="true">↓</div>
-        <div class="setup_metric_step">
-          <span>3</span>
-          <p>Downstream PM can either push back early before the upstream team’s implementation details are hardened, or proactively plan for the change</p>
-        </div>
-        <div class="setup_metric_arrow" aria-hidden="true">↓</div>
-        <div class="setup_metric_step">
-          <span>4</span>
-          <p>Fewer delayed launches / higher product velocity</p>
-        </div>
+      <h2>Measuring success</h2>
+      <div class="setup_measurement_chain">
+        <article class="setup_measurement_row setup_measurement_row_business_value">
+          <span class="setup_measurement_row_label">Customer business value</span>
+          <div class="setup_measurement_metric_list">
+            <p><strong>Launch delay rate</strong><span>% of launches delayed by dependencies</span></p>
+            <p><strong>Unplanned rework</strong><span>Engineering hours spent on post-launch fixes</span></p>
+          </div>
+        </article>
+
+        <div class="setup_measurement_upward_arrow" aria-hidden="true"><span>↑</span> drives</div>
+
+        <article class="setup_measurement_row setup_measurement_row_north_star">
+          <span class="setup_measurement_row_label">North Star metric</span>
+          <div class="setup_measurement_metric_list">
+            <p><strong>Average lead time of downstream PM awareness</strong><span>Time between downstream notification and the planned launch</span></p>
+          </div>
+        </article>
+
+        <div class="setup_measurement_upward_arrow" aria-hidden="true"><span>↑</span> drives</div>
+
+        <article class="setup_measurement_row setup_measurement_row_drivers">
+          <span class="setup_measurement_row_label">Drivers</span>
+          <div class="setup_measurement_metric_list">
+            <p><strong>Detection recall</strong><span>% of real dependencies caught</span></p>
+            <p><strong>Early notification rate</strong><span>% of detected dependencies shared before the technical approach hardens</span></p>
+          </div>
+        </article>
+
+        <article class="setup_measurement_row setup_measurement_row_guardrails">
+          <span class="setup_measurement_row_label">Guardrail</span>
+          <div class="setup_measurement_metric_list">
+            <p><strong>Detection precision</strong><span>% of flagged dependencies that are real</span></p>
+          </div>
+        </article>
+      </div>
+
+      <div class="setup_measurement_watch_list">
+        <h3>Others we’d watch</h3>
+        <ul>
+          <li>Upstream PM review-to-notification conversion rate.</li>
+          <li>Median time from alert to downstream notification.</li>
+          <li>Downstream impact brief open rate.</li>
+          <li>% of dependencies resolved before implementation begins.</li>
+        </ul>
       </div>
     </section>
 
