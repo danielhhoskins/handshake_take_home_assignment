@@ -1211,22 +1211,36 @@ code {
   resize: vertical;
 }
 
-/* ── toast (product-level, so it sits inside the frame) ── */
-.toast {
+/* ── explicit handoff from the upstream to downstream experience ── */
+.downstream_handoff_confirmation_overlay {
+  display: grid;
   position: absolute;
-  top: 20px;
-  left: 50%;
-  z-index: 5;
-  transform: translateX(-50%);
-  min-width: 440px;
-  max-width: 90%;
-  padding: 18px 24px;
-  background: #087a3e;
-  border: 2px solid #56c889;
+  z-index: 10;
+  inset: 0;
+  place-items: center;
+  padding: 32px;
+  background: rgba(16, 24, 38, 0.48);
+  backdrop-filter: blur(2px);
+}
+
+.downstream_handoff_confirmation_dialog {
+  width: min(480px, 100%);
+  padding: 30px;
+  border: 1px solid #b9c6d8;
   border-radius: 12px;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
+  background: #fff;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(8, 122, 62, 0.3);
+  box-shadow: 0 18px 48px rgba(16, 24, 38, 0.3);
+}
+
+.downstream_handoff_confirmation_dialog strong {
+  display: block;
+  color: var(--color_text);
+  font-size: 20px;
+}
+
+.downstream_handoff_confirmation_dialog p {
+  margin: 10px 0 24px;
+  color: var(--color_muted);
+  line-height: 1.6;
 }

@@ -76,17 +76,6 @@ function render_evidence_lists_on_every_screen() {
   });
 }
 
-function show_toast_message(toast_message_text) {
-  const toast_element = document.getElementById("toast");
-  toast_element.textContent = toast_message_text;
-  toast_element.classList.remove("hidden");
-  window.clearTimeout(show_toast_message.pending_timeout_identifier);
-  show_toast_message.pending_timeout_identifier = window.setTimeout(
-    () => toast_element.classList.add("hidden"),
-    4000
-  );
-}
-
 function show_status_note(status_note_element, status_note_text) {
   status_note_element.textContent = status_note_text;
   status_note_element.classList.remove("hidden");
@@ -96,6 +85,7 @@ function show_status_note(status_note_element, status_note_text) {
 function show_setup_page() {
   document.getElementById("setup_page").classList.remove("hidden");
   document.getElementById("prototype_frame").classList.add("hidden");
+  document.getElementById("downstream_handoff_confirmation").classList.add("hidden");
   document.querySelector(".harness_setup_button").classList.add("is_active");
   document.querySelectorAll(".harness_step_button").forEach((harness_step_button_element) => {
     harness_step_button_element.classList.remove("is_active");
@@ -125,6 +115,7 @@ function go_to_step(target_step_number) {
   document.getElementById("setup_page").classList.add("hidden");
   document.getElementById("prototype_frame").classList.remove("hidden");
   document.getElementById("harness_narration").classList.add("hidden");
+  document.getElementById("downstream_handoff_confirmation").classList.add("hidden");
   document.querySelector(".harness_setup_button").classList.remove("is_active");
   document.querySelectorAll(".screen").forEach((screen_element) => {
     screen_element.classList.toggle("hidden", screen_element.dataset.step !== String(target_step_number));
@@ -147,11 +138,10 @@ const handlers_by_action_name = {
   open_setup: () => show_setup_page(),
   open_dependency_review: () => go_to_step(2),
   open_downstream_impact_brief: () => go_to_step(4),
+  open_downstream_pm_experience: () => go_to_step(3),
 
-  approve_outreach: () => {
-    show_toast_message("Revenue Analytics has been invited to review this dependency.");
-    go_to_step(3);
-  },
+  approve_outreach: () =>
+    document.getElementById("downstream_handoff_confirmation").classList.remove("hidden"),
 
   toggle_edit_impact: () =>
     document.querySelector('[data-edit-impact="upstream"]').classList.toggle("hidden"),
