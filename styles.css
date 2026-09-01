@@ -434,11 +434,6 @@ code {
   color: var(--color_text);
 }
 
-.setup_validation_group h3 {
-  margin: 0 0 12px;
-  font-size: 18px;
-}
-
 .setup_current_state {
   max-width: 920px;
 }
