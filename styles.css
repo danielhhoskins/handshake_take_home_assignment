@@ -633,30 +633,6 @@ code {
   margin-top: 8px;
 }
 
-.setup_ataq_list {
-  max-width: 920px;
-  margin: 0;
-  padding-left: 24px;
-  color: var(--color_text);
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-.setup_ataq_list > li + li {
-  margin-top: 18px;
-}
-
-.setup_ataq_list > li > strong {
-  font-weight: 700;
-}
-
-.setup_ataq_list ul {
-  margin: 8px 0 0;
-  padding-left: 24px;
-  color: var(--color_muted);
-  font-size: 15px;
-}
-
 .workflow_failure {
   display: grid;
   grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1.15fr;
