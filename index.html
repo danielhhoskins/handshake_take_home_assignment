@@ -115,7 +115,7 @@
       <span class="setup_section_label">Company type</span>
       <h2>Where this problem is most acute</h2>
       <ul class="setup_company_list">
-        <li><strong>1,000–5,000 employees:</strong> large enough that PMs cannot be close with every downstream consumer, but not so large that data dependencies are managed by a dedicated governance team.</li>
+        <li><strong>1,000 to 5,000 employees:</strong> large enough that PMs cannot be close with every downstream consumer, but not so large that data dependencies are managed by a dedicated governance team.</li>
         <li><strong>At least 10 independently owned product or data teams.</strong></li>
         <li><strong>Product teams ship customer-facing changes at least monthly:</strong> frequent change means upstream PMs are constantly working through evolving plans, making it harder to identify and notify every affected downstream team early.</li>
       </ul>
@@ -262,17 +262,25 @@
     <section class="setup_section">
       <h2>What’s next</h2>
       <div class="setup_next_steps">
-        <h3>What I’d test first, ordered by risk</h3>
+        <h3>What I’d test first</h3>
         <ol>
-          <li><strong>Can the system detect real dependencies accurately?</strong> Test 3–5 past launches with known late dependencies. Maximize recall while maintaining precision above 50%.</li>
-          <li><strong>Will upstream PMs trust the evidence enough to notify?</strong> Run 5–10 moderated sessions using evidence from real planning artifacts. If they hesitate, identify whether the evidence is wrong, incomplete, or unconvincing.</li>
-          <li><strong>Will downstream PMs act on the impact brief?</strong> Show real impact briefs in moderated sessions and ask whether they would dismiss the alert or request alignment. If they still need to verify everything themselves, the brief needs richer evidence.</li>
+          <li><strong>Is the problem real and frequent enough?</strong> Interview 15 to 20 engineering leaders at target companies, asking for a specific recent story of a launch disrupted by a late-discovered dependency. If fewer than a quarter have one, nothing else matters.</li>
+          <li><strong>Will upstream PMs notify when shown evidence of a dependency they didn’t know about?</strong> Run 5 to 10 moderated sessions with the prototype using real planning artifacts. If they hesitate, determine whether the barrier is understanding (fixable) or motivation (not fixable by this product).</li>
+          <li><strong>Can the system detect real dependencies accurately?</strong> Test 3 to 5 past launches with known late dependencies. Maximize recall while maintaining precision above 50%.</li>
         </ol>
 
-        <h3>If the core loop validates</h3>
+        <h3>What I’d do next</h3>
+        <ol>
+          <li><strong>Enrich the impact brief with impact simulation</strong> if downstream PMs still verify independently before acting.</li>
+          <li><strong>Integrate alerts into Slack, Jira, or document editors</strong> if PMs trust alerts but resist using a separate tool.</li>
+          <li><strong>Train on confirmed, dismissed, and incorrectly dismissed alerts.</strong> Once precision is high enough, let high-confidence dependencies bypass upstream approval.</li>
+        </ol>
+
+        <h3>Time horizons</h3>
         <ul>
-          <li>Integrate alerts into Slack, Jira, or document editors once distribution rather than trust becomes the main constraint.</li>
-          <li>Use confirmed and dismissed alerts plus alignment requests as training signals to improve precision and recall over time.</li>
+          <li><strong>Start:</strong> Detect data dependencies between two teams, accumulating a cross-team dependency graph no other tool builds.</li>
+          <li><strong>Medium-term:</strong> Move from reactive alerts to proactive coordination intelligence, such as telling leadership which teams are tightly coupled before problems emerge.</li>
+          <li><strong>Long-term:</strong> Become the system of record for how decisions flow across a technology company.</li>
         </ul>
       </div>
     </section>
